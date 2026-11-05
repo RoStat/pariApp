@@ -1,0 +1,83 @@
+{
+ "offer_created_at": "2026-11-05T14:17:29Z",
+ "fetched_at": "2026-11-05T14:45:19Z",
+ "events_count": 92,
+ "followed_count": 44,
+ "next_followed_kickoffs": [
+  {
+   "match": "Aarhus GF-Braga",
+   "comp": "Europa Conf.",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Anderlecht-Salzbourg",
+   "comp": "Europa League",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Atalanta-Kairat Almaty",
+   "comp": "Europa Conf.",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Crystal Palace-Hoffenheim",
+   "comp": "Europa League",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Etoile Rouge-Inter Escaldes",
+   "comp": "Europa Conf.",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "FC Thun-Hearts",
+   "comp": "Europa Conf.",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Kups-La Gantoise",
+   "comp": "Europa Conf.",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Levski Sofia-Jagiellonia",
+   "comp": "Europa League",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Lillestrøm-Viktoria Plzen",
+   "comp": "Europa League",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Lincoln FC-Hajduk Split",
+   "comp": "Europa Conf.",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Midtjylland-Ajax",
+   "comp": "Europa Conf.",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  },
+  {
+   "match": "Milan AC-Ferencvaros",
+   "comp": "Europa League",
+   "start": "2026-11-05T17:45:00Z",
+   "fin": "2026-11-05T17:40:00Z"
+  }
+ ],
+ "fetch_error": null,
+ "last_error": null,
+ "updated_at": "2026-11-05T14:45:25Z"
+}
