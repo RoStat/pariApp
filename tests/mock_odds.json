@@ -1,0 +1,13 @@
+{"soccer_uefa_europa_league": [
+ {"id":"m1","sport_key":"soccer_uefa_europa_league","commence_time":"2026-11-05T20:00:00Z","home_team":"Celtic","away_team":"Besiktas",
+  "bookmakers":[{"key":"pinnacle","title":"Pinnacle","markets":[{"key":"h2h","outcomes":[{"name":"Celtic","price":2.72},{"name":"Besiktas","price":2.80},{"name":"Draw","price":3.60}]},{"key":"totals","outcomes":[{"name":"Over","price":1.88,"point":2.5},{"name":"Under","price":2.00,"point":2.5}]}]},
+               {"key":"winamax_fr","title":"Winamax (FR)","markets":[{"key":"h2h","outcomes":[{"name":"Celtic","price":2.60},{"name":"Besiktas","price":2.65},{"name":"Draw","price":3.40}]}]}]},
+ {"id":"m2","sport_key":"soccer_uefa_europa_league","commence_time":"2026-11-05T20:00:00Z","home_team":"Bayer Leverkusen","away_team":"Marseille",
+  "bookmakers":[{"key":"pinnacle","title":"Pinnacle","markets":[{"key":"h2h","outcomes":[{"name":"Bayer Leverkusen","price":1.36},{"name":"Marseille","price":8.50},{"name":"Draw","price":5.40}]},{"key":"totals","outcomes":[{"name":"Over","price":1.45,"point":2.5},{"name":"Under","price":2.85,"point":2.5}]}]}]},
+ {"id":"m3","sport_key":"soccer_uefa_europa_league","commence_time":"2026-11-05T17:45:00Z","home_team":"Real Sociedad","away_team":"Lyon",
+  "bookmakers":[{"key":"pinnacle","title":"Pinnacle","markets":[{"key":"h2h","outcomes":[{"name":"Real Sociedad","price":1.80},{"name":"Lyon","price":4.60},{"name":"Draw","price":3.75}]},{"key":"totals","outcomes":[{"name":"Over","price":1.95,"point":2.5},{"name":"Under","price":1.92,"point":2.5}]}]}]},
+ {"id":"m4","sport_key":"soccer_uefa_europa_league","commence_time":"2026-11-05T20:00:00Z","home_team":"Hapoel Beer Sheva","away_team":"OFI Crete",
+  "bookmakers":[{"key":"pinnacle","title":"Pinnacle","markets":[{"key":"h2h","outcomes":[{"name":"Hapoel Beer Sheva","price":1.95},{"name":"OFI Crete","price":4.10},{"name":"Draw","price":3.55}]}]}]},
+ {"id":"m5","sport_key":"soccer_uefa_europa_league","commence_time":"2026-11-05T20:00:00Z","home_team":"Some Unknown FC","away_team":"Another Team",
+  "bookmakers":[]}
+]}

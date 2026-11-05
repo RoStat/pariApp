@@ -1,0 +1,4 @@
+offre/            # zip et sqlite bruts : jamais versionnés (binaire, 10 Mo toutes les 30 min)
+__pycache__/
+*.pyc
+.env

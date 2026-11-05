@@ -1,0 +1,47 @@
+# Relais PariApp : offre FDJ toutes les 30 min, Pinnacle seulement dans les fenêtres H-60/80 et H-1/12 des matchs suivis.
+# Horaires en UTC (GitHub ne connaît pas les fuseaux) : 16h-21h UTC couvre 17h-23h heure de Paris été comme hiver.
+name: pariapp-relais
+on:
+  schedule:
+    - cron: "5,35 7-23 * * *"      # offre FDJ : toutes les 30 min, 08h-01h Paris (hors fenêtre du soir)
+    - cron: "*/10 16-21 * * *"     # soirée : toutes les 10 min -> garantit un passage dans chaque fenêtre de 10-12 min
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Forcer un relevé Pinnacle (pre|close) — consomme des crédits"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency:
+  group: pariapp-relais
+  cancel-in-progress: false
+jobs:
+  relais:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet requests
+      - name: Offre FDJ (zip -> offre.json)
+        run: python3 scripts/fetch_offre.py
+      - name: Pinnacle si un match suivi est dans une fenêtre
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          if [ -n "${{ github.event.inputs.force }}" ]; then
+            python3 scripts/odds_ref.py --force "${{ github.event.inputs.force }}"
+          else
+            python3 scripts/odds_ref.py
+          fi
+      - name: CLV du journal (si des tickets sont saisis)
+        run: test -f journal/tickets.csv && python3 scripts/clv.py || echo "pas de journal"
+      - name: Commit si changement
+        run: |
+          git config user.name "pariapp-relais"
+          git config user.email "bot@users.noreply.github.com"
+          git add data journal
+          git diff --cached --quiet && echo "rien de nouveau" || (git commit -m "relais $(date -u +%Y-%m-%dT%H:%MZ)" && git push)

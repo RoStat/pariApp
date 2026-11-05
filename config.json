@@ -1,0 +1,39 @@
+{
+  "zip_url": "https://www.pointdevente.parionssport.fdj.fr/service-sport-pointdevente-bff/v1/files/spdv_mobile_offre.sqlite.zip",
+  "followed_comps": {
+    "45461": {"name": "ChampionsLeague", "sport_key": "soccer_uefa_champs_league"},
+    "45460": {"name": "Europa League", "sport_key": "soccer_uefa_europa_league"},
+    "46231": {"name": "Europa Conf.", "sport_key": "soccer_uefa_europa_conference_league"},
+    "45452": {"name": "L1 McDonald's", "sport_key": "soccer_france_ligue_one"}
+  },
+  "other_comps_in_offre": {
+    "45450": {"name": "Ligue 2 BKT", "sport_key": "soccer_france_ligue_two"},
+    "45457": {"name": "Premier League", "sport_key": "soccer_epl"},
+    "45456": {"name": "LaLiga", "sport_key": "soccer_spain_la_liga"},
+    "45402": {"name": "Serie A", "sport_key": "soccer_italy_serie_a"},
+    "45399": {"name": "Bundesliga 1", "sport_key": "soccer_germany_bundesliga"}
+  },
+  "odds_api": {
+    "base_url": "https://api.the-odds-api.com/v4",
+    "regions": "eu",
+    "bookmakers": "pinnacle,winamax_fr,unibet_fr",
+    "reference_bookmaker": "pinnacle",
+    "markets": "h2h,totals",
+    "min_credits_remaining": 50
+  },
+  "snapshots": {
+    "pre":   {"minutes_before_kickoff_min": 60, "minutes_before_kickoff_max": 80},
+    "close": {"minutes_before_kickoff_min": 1,  "minutes_before_kickoff_max": 12}
+  },
+  "value": {
+    "devig": "proportional",
+    "min_value_pct": 3.0,
+    "kelly_fraction": 0.25,
+    "max_stake_pct_bankroll": 2.0
+  },
+  "offre_json": {
+    "markets": ["1/N/2", "Double chance", "Plus/Moins", "Les 2 équipes marquent", "Buteur", "Buteur 2 fois ou plus", "Joueur décisif", "Un doublé sera-t-il marqué ?"],
+    "team_total_lines": ["1,5", "2,5"],
+    "player_top_n": 5
+  }
+}
