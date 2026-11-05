@@ -1,0 +1,40 @@
+/* PariApp v2 — mobile-first, thème clair/sombre automatique, aucune dépendance. */
+:root{--bg:#f4f5f8;--card:#fff;--line:#dfe3ea;--txt:#15181f;--mut:#5c6675;--acc:#1f9d6a;--acc2:#2b7fd6;--warn:#b8700a;--bad:#c93c3c;--chip:#eceff5;--val:#6a3fd1;--acc-ink:#fff}
+@media (prefers-color-scheme: dark){:root{--bg:#0f1115;--card:#171a21;--line:#2a2f3a;--txt:#e8eaf0;--mut:#9aa3b2;--acc:#3ddc97;--acc2:#5aa9ff;--warn:#ffb454;--bad:#ff6b6b;--chip:#222733;--val:#b69cff;--acc-ink:#07140e}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.4 -apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+header{position:sticky;top:0;background:var(--bg);padding:12px 16px 8px;border-bottom:1px solid var(--line);z-index:5}
+h1{font-size:18px;margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+h1 .mut{font-weight:400;font-size:13px;text-align:right}
+.steps{display:flex;gap:4px}.steps span{flex:1;height:4px;border-radius:2px;background:var(--line)}.steps span.on{background:var(--acc)}
+main{padding:14px 16px 32px;max-width:720px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+h2{font-size:16px;margin:0 0 8px}.mut{color:var(--mut);font-size:13px}.small{font-size:13px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}
+button{font:inherit;border:1px solid var(--line);background:var(--chip);color:var(--txt);border-radius:10px;padding:10px 14px;cursor:pointer;min-height:44px}
+button.pri{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);font-weight:600}
+button.sm{padding:6px 10px;font-size:13px;min-height:36px}button:disabled{opacity:.45}
+.chip{display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--chip);cursor:pointer;user-select:none;min-height:40px}
+.chip.on{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+label.ck{display:flex;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--line)}label.ck:last-child{border-bottom:0}
+label.ck input{width:22px;height:22px;flex:none;margin:0}
+input[type=number],input[type=text]{font:inherit;background:var(--chip);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:10px;width:100%;min-height:44px}
+label.small{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nav{display:flex;justify-content:space-between;gap:8px;margin:8px 0 24px}
+.ticket{border-left:4px solid var(--acc2)}.ticket.done{opacity:.6;border-left-color:var(--acc)}
+.leg{display:flex;gap:8px;align-items:baseline;padding:5px 0;border-bottom:1px dashed var(--line);font-size:14px}.leg:last-child{border:0}
+.leg .t{font-size:11px;padding:1px 6px;border-radius:6px;background:var(--chip);color:var(--mut);flex:none;min-width:60px;text-align:center}
+.leg .m{flex:1;min-width:0}.leg .c{font-variant-numeric:tabular-nums;font-weight:600;flex:none}
+.leg .x{color:var(--mut);cursor:pointer;flex:none;padding:0 6px;font-size:18px;line-height:1}
+.kpi{display:flex;gap:12px;font-size:13px;margin:6px 0;flex-wrap:wrap}.kpi b{font-size:15px}
+a.open{display:block;text-align:center;background:var(--acc2);color:#fff;text-decoration:none;font-weight:700;padding:13px;border-radius:10px;margin-top:8px}
+.warn{color:var(--warn)}.bad{color:var(--bad)}.ok{color:var(--acc)}
+.banner{border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:14px;border:1px solid}
+.banner.warn{border-color:var(--warn);color:var(--warn)}.banner.bad{border-color:var(--bad);color:var(--bad)}
+.badge{display:inline-block;font-size:11px;padding:1px 6px;border-radius:6px;border:1px solid var(--val);color:var(--val);margin-left:4px;vertical-align:middle}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--line);padding:10px 14px;border-radius:10px;display:none;z-index:9;max-width:90vw}
+.hide{display:none}
+details summary{cursor:pointer;color:var(--mut);font-size:13px}
+table.ko{width:100%;border-collapse:collapse;font-size:14px}table.ko td{padding:4px 0;border-bottom:1px solid var(--line);vertical-align:top}table.ko td:last-child{text-align:right;white-space:nowrap;color:var(--mut)}
+.meter{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:6px 0}.meter i{display:block;height:100%;background:var(--acc)}.meter i.over{background:var(--bad)}
