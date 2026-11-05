@@ -1,85 +1,67 @@
 {
- "offer_created_at": "2026-11-05T14:17:29Z",
- "fetched_at": "2026-11-05T15:10:08Z",
- "events_count": 92,
- "followed_count": 44,
+ "offer_created_at": "2026-11-05T21:21:29Z",
+ "fetched_at": "2026-11-05T21:26:31Z",
+ "events_count": 57,
+ "followed_count": 9,
  "next_followed_kickoffs": [
   {
-   "match": "Aarhus GF-Braga",
-   "comp": "Europa Conf.",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Toulouse-Strasbourg",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-06T19:45:00Z",
+   "fin": "2026-11-06T19:40:00Z"
   },
   {
-   "match": "Anderlecht-Salzbourg",
-   "comp": "Europa League",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Auxerre-Paris FC",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-07T18:00:00Z",
+   "fin": "2026-11-07T17:55:00Z"
   },
   {
-   "match": "Atalanta-Kairat Almaty",
-   "comp": "Europa Conf.",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Paris SG-Troyes",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-07T20:05:00Z",
+   "fin": "2026-11-07T20:00:00Z"
   },
   {
-   "match": "Crystal Palace-Hoffenheim",
-   "comp": "Europa League",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Rennes-Lille",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-08T14:00:00Z",
+   "fin": "2026-11-08T13:55:00Z"
   },
   {
-   "match": "Etoile Rouge-Inter Escaldes",
-   "comp": "Europa Conf.",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Angers-Nice",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-08T16:15:00Z",
+   "fin": "2026-11-08T16:10:00Z"
   },
   {
-   "match": "FC Thun-Hearts",
-   "comp": "Europa Conf.",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Brest-Lyon",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-08T16:15:00Z",
+   "fin": "2026-11-08T16:10:00Z"
   },
   {
-   "match": "Kups-La Gantoise",
-   "comp": "Europa Conf.",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Le Havre-Lorient",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-08T16:15:00Z",
+   "fin": "2026-11-08T16:10:00Z"
   },
   {
-   "match": "Levski Sofia-Jagiellonia",
-   "comp": "Europa League",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Le Mans-Monaco",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-08T16:15:00Z",
+   "fin": "2026-11-08T16:10:00Z"
   },
   {
-   "match": "Lillestrøm-Viktoria Plzen",
-   "comp": "Europa League",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
-  },
-  {
-   "match": "Lincoln FC-Hajduk Split",
-   "comp": "Europa Conf.",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
-  },
-  {
-   "match": "Midtjylland-Ajax",
-   "comp": "Europa Conf.",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
-  },
-  {
-   "match": "Milan AC-Ferencvaros",
-   "comp": "Europa League",
-   "start": "2026-11-05T17:45:00Z",
-   "fin": "2026-11-05T17:40:00Z"
+   "match": "Lens-Marseille",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-08T19:45:00Z",
+   "fin": "2026-11-08T19:40:00Z"
   }
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-05T15:10:13Z",
+ "updated_at": "2026-11-05T21:26:32Z",
  "picks_count": 0,
  "value_rows": 265,
  "last_snapshot_at": "2026-11-05T15:10:12Z",
