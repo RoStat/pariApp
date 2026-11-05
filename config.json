@@ -1,4 +1,6 @@
 {
+  "_doc": "Configuration du relais. Les clés commençant par _ sont des commentaires (JSON n'en a pas).",
+  "repo": {"owner": "RoStat", "name": "pariApp", "branch": "main", "pages_url": "https://rostat.github.io/pariApp/"},
   "zip_url": "https://www.pointdevente.parionssport.fdj.fr/service-sport-pointdevente-bff/v1/files/spdv_mobile_offre.sqlite.zip",
   "followed_comps": {
     "45461": {"name": "ChampionsLeague", "sport_key": "soccer_uefa_champs_league"},
@@ -19,12 +21,25 @@
     "bookmakers": "pinnacle,winamax_fr,unibet_fr",
     "reference_bookmaker": "pinnacle",
     "markets": "h2h,totals",
-    "min_credits_remaining": 50
+    "min_credits_remaining": 50,
+    "monthly_budget": 300,
+    "_cout": "odds : marchés × régions = 2 crédits par compétition et par relevé ; scores (daysFrom) : 2 crédits par compétition (doc The Odds API, vérifiée le 05/11/2026)"
   },
   "snapshots": {
-    "pre":   {"minutes_before_kickoff_min": 60, "minutes_before_kickoff_max": 80},
-    "close": {"minutes_before_kickoff_min": 1,  "minutes_before_kickoff_max": 12}
+    "_fenetres_verifiees": "Calcul explicite (tests/test_windows.py, lancé le 05/11/2026) avec les crons '5,35 7-23' et '*/10 16-21' UTC. Coups d'envoi 18h45 Paris : hiver (17h45 UTC) passages pre à 75/70/65/60 min, close à 10/5 min ; été (16h45 UTC) pre à 70 min seulement (15h35 UTC, le cron */10 ne commence qu'à 16h00), close à 10/5 min. 21h00 Paris : hiver (20h00 UTC) pre 80/70/60, close 10 ; été (19h00 UTC) pre 80/70/60, close 10. Avec les bornes initiales [60,80] et [1,12], un retard de cron de plus de 2 min faisait manquer la clôture (passage unique à 10 min) et le pre d'été de 18h45 (passage unique à 70 min). Bornes corrigées : pre [55,85] et close [1,15] tolèrent 5 min de retard sans changer le cron. Un retard supérieur à 15 min fait perdre le relevé de clôture de ce match (connu, accepté : GitHub ne garantit pas l'heure des crons).",
+    "pre":   {"minutes_before_kickoff_min": 55, "minutes_before_kickoff_max": 85},
+    "close": {"minutes_before_kickoff_min": 1,  "minutes_before_kickoff_max": 15}
   },
+  "scores": {
+    "_doc": "Règlement automatique des résultats (D2) : un passage par jour à 08h UTC, uniquement pour les compétitions qui ont des sélections en attente dans journal/tickets.csv jouées dans les days_from derniers jours. Coupe-circuit : désactivé si credits_remaining < disable_below_credits avant le jour mid_month_day, ou < min_credits_remaining ensuite.",
+    "cron_utc": "0 8 * * *",
+    "days_from": 3,
+    "cost_per_call": 2,
+    "disable_below_credits": 120,
+    "mid_month_day": 20
+  },
+  "weekly": {"cron_utc": "20 6 * * 1"},
+  "alias_issue": {"title": "Alias manquants (data/teams.json)", "label": "alias", "horizon_hours": 36},
   "value": {
     "devig": "proportional",
     "min_value_pct": 3.0,
@@ -34,6 +49,7 @@
   "offre_json": {
     "markets": ["1/N/2", "Double chance", "Plus/Moins", "Les 2 équipes marquent", "Buteur", "Buteur 2 fois ou plus", "Joueur décisif", "Un doublé sera-t-il marqué ?"],
     "team_total_lines": ["1,5", "2,5"],
-    "player_top_n": 5
+    "player_top_n": 5,
+    "horizon_days": 7
   }
 }
