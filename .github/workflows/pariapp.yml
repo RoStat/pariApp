@@ -1,31 +1,42 @@
-# Relais PariApp : offre FDJ toutes les 30 min, Pinnacle seulement dans les fenêtres H-60/80 et H-1/12 des matchs suivis.
-# Horaires en UTC (GitHub ne connaît pas les fuseaux) : 16h-21h UTC couvre 17h-23h heure de Paris été comme hiver.
+# Relais PariApp : offre FDJ toutes les 30 min, Pinnacle seulement dans les fenêtres pre/close des matchs suivis (config.json),
+# règlement des résultats à 08h UTC, résumé hebdomadaire le lundi. Horaires en UTC (GitHub ne connaît pas les fuseaux) :
+# 16h-21h UTC couvre 17h-23h heure de Paris été comme hiver. Vérification des fenêtres : tests/test_windows.py.
 name: pariapp-relais
 on:
   schedule:
     - cron: "5,35 7-23 * * *"      # offre FDJ : toutes les 30 min, 08h-01h Paris (hors fenêtre du soir)
-    - cron: "*/10 16-21 * * *"     # soirée : toutes les 10 min -> garantit un passage dans chaque fenêtre de 10-12 min
+    - cron: "*/10 16-21 * * *"     # soirée : toutes les 10 min -> garantit un passage dans chaque fenêtre pre/close
+    - cron: "0 8 * * *"            # règlement des résultats de la veille (scores.py, 0 crédit s'il n'y a rien à régler)
+    - cron: "20 6 * * 1"           # lundi : journal/weekly.md
   workflow_dispatch:
     inputs:
       force:
-        description: "Forcer un relevé Pinnacle (pre|close) — consomme des crédits"
+        description: "Forcer un relevé Pinnacle (pre|close) — consomme des crédits, n'écrit pas state.json"
         required: false
         default: ""
+      scores:
+        description: "Lancer aussi le règlement des résultats (true) — 2 crédits par compétition en attente"
+        required: false
+        default: "false"
 permissions:
   contents: write
+  issues: write
 concurrency:
   group: pariapp-relais
   cancel-in-progress: false
 jobs:
   relais:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install --quiet requests
+      - name: Tests unitaires (lancement manuel uniquement)
+        if: github.event_name == 'workflow_dispatch'
+        run: python3 -m unittest discover -s tests -v
       - name: Offre FDJ (zip -> offre.json)
         run: python3 scripts/fetch_offre.py
       - name: Pinnacle si un match suivi est dans une fenêtre
@@ -37,11 +48,29 @@ jobs:
           else
             python3 scripts/odds_ref.py
           fi
-      - name: CLV du journal (si des tickets sont saisis)
+      - name: CLV du journal
         run: test -f journal/tickets.csv && python3 scripts/clv.py || echo "pas de journal"
+      - name: Règlement des résultats (08h UTC ou sur demande)
+        if: github.event.schedule == '0 8 * * *' || github.event.inputs.scores == 'true'
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python3 scripts/scores.py
+      - name: Résumé hebdomadaire (lundi)
+        if: github.event.schedule == '20 6 * * 1'
+        run: python3 scripts/weekly.py
+      - name: Issue « alias manquants »
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/alias_issue.py
       - name: Commit si changement
         run: |
           git config user.name "pariapp-relais"
           git config user.email "bot@users.noreply.github.com"
           git add data journal
-          git diff --cached --quiet && echo "rien de nouveau" || (git commit -m "relais $(date -u +%Y-%m-%dT%H:%MZ)" && git push)
+          if git diff --cached --quiet; then echo "rien de nouveau"; exit 0; fi
+          git commit -m "relais $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push && exit 0
+            echo "push échoué, nouvel essai dans $((i*5)) s"; sleep $((i*5))
+          done
+          exit 1

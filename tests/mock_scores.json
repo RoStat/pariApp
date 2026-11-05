@@ -1,0 +1,6 @@
+{"soccer_uefa_europa_league": [
+ {"id":"s1","sport_key":"soccer_uefa_europa_league","commence_time":"2026-11-05T20:00:00Z","completed":true,"home_team":"Bayer Leverkusen","away_team":"Marseille",
+  "scores":[{"name":"Bayer Leverkusen","score":"2"},{"name":"Marseille","score":"2"}]},
+ {"id":"s2","sport_key":"soccer_uefa_europa_league","commence_time":"2026-11-05T20:00:00Z","completed":true,"home_team":"Celtic","away_team":"Besiktas",
+  "scores":[{"name":"Celtic","score":"1"},{"name":"Besiktas","score":"0"}]}
+]}
