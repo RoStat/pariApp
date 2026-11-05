@@ -130,6 +130,20 @@ const STYLES = {
   discipline: { w: { fav: 3, dc: 3, total: 2, btts: 2, nul: 0.4, outsider: 0.4 }, maxLeg: 3.0, minTypes: 1, legs: [2, 3], coteRange: [3, 8] }
 };
 const STYLE_LABELS = { melange: "Mélange", safe: "Safe", risque: "Risqué", discipline: "Discipliné" };
+// Couvertures : deux tickets qui portent des sélections incompatibles sur le même match (ex. « Lyon gagne » et « Match nul »).
+// Jamais dans un même ticket (une sélection par match, garanti par genTicket) ; entre tickets c'est une couverture, affichée pour être choisie en connaissance de cause.
+function winSet(l) {
+  if (l.type === "fav" || l.type === "outsider") return new Set([l.pick]);
+  if (l.type === "nul") return new Set(["N"]);
+  if (l.type === "dc") return new Set(l.pick.split("/"));
+  return null;
+}
+function opposed(a, b) {
+  if (a.ev !== b.ev) return false;
+  if (a.mid === b.mid) return a.pos !== b.pos;
+  const wa = winSet(a), wb = winSet(b);
+  return !!(wa && wb && ![...wa].some(x => wb.has(x)));
+}
 function pickWeighted(items, wf) { let tot = 0; const ws = items.map(i => { const w = wf(i); tot += w; return w; }); let r = Math.random() * tot; for (let i = 0; i < items.length; i++) { r -= ws[i]; if (r <= 0) return items[i]; } return items[items.length - 1]; }
 function legWeight(cfg, l, legs, usedEv) {
   let w = cfg.w[l.type] || 0;
@@ -140,13 +154,14 @@ function legWeight(cfg, l, legs, usedEv) {
   if (legs.some(x => x.type === l.type)) w *= 0.5; // diversité des types
   return w;
 }
-function genTicket(pool, cfg, cmin, cmax, usedEv, usedPl) {
+function genTicket(pool, cfg, cmin, cmax, usedEv, usedPl, usedLegs = []) {
   let best = null;
   const maxLegs = Math.min(cfg.legs[1], MAX_LEGS);
   for (let attempt = 0; attempt < 400; attempt++) {
     const legs = []; const evs = new Set(); let cote = 1;
     for (let i = 0; i < maxLegs; i++) {
-      const cands = pool.filter(l => !evs.has(l.ev) && cfg.w[l.type] && l.cote <= cfg.maxLeg && (!l.player || (usedPl[l.player] || 0) < 2) && cote * l.cote <= cmax * 1.02);
+      const cands = pool.filter(l => !evs.has(l.ev) && cfg.w[l.type] && l.cote <= cfg.maxLeg && (!l.player || (usedPl[l.player] || 0) < 2) && cote * l.cote <= cmax * 1.02
+        && !usedLegs.some(u => opposed(u, l)));  // règle dure : pas de couverture entre tickets, un même match ne porte que des choix compatibles
       if (!cands.length) break;
       const leg = pickWeighted(cands, l => legWeight(cfg, l, legs, usedEv));
       legs.push(leg); evs.add(leg.ev); cote *= leg.cote;
@@ -177,10 +192,10 @@ function targetRange(cfg) { return cfg.coteRange ? cfg.coteRange : [S.prefs.gmin
 function buildPool() { const pool = []; selectedEvents().forEach(e => (S.legsByEvent[e.event_id] || []).forEach(l => pool.push(l))); return pool; }
 function generateAll() {
   const pool = buildPool(); const cfg = STYLES[S.prefs.style] || STYLES.melange; const [cmin, cmax] = targetRange(cfg);
-  const usedEv = {}, usedPl = {}, taken = new Set(); S.tickets = [];
+  const usedEv = {}, usedPl = {}, taken = new Set(), usedLegs = []; S.tickets = [];
   for (let k = 0; k < S.prefs.nb; k++) {
-    const t = genTicket(pool, cfg, cmin, cmax, usedEv, usedPl); if (!t) break;
-    t.legs.forEach(l => { usedEv[l.ev] = (usedEv[l.ev] || 0) + 1; if (l.player) usedPl[l.player] = (usedPl[l.player] || 0) + 1; });
+    const t = genTicket(pool, cfg, cmin, cmax, usedEv, usedPl, usedLegs); if (!t) break;
+    t.legs.forEach(l => { usedEv[l.ev] = (usedEv[l.ev] || 0) + 1; if (l.player) usedPl[l.player] = (usedPl[l.player] || 0) + 1; usedLegs.push(l); });
     S.tickets.push(finishTicket(t.legs, nameTicket(t.legs, taken, S.prefs.style)));
   }
 }
@@ -202,10 +217,10 @@ function finishTicket(legs, name) {
   return { name, legs, cote, boost, gain, trj, mise, deadline: Math.min(...legs.map(l => S.byId[l.ev].fin_ts)), link, key: legs.map(l => l.mid + ":" + l.pos).sort().join("|") };
 }
 function regenTicket(i) {
-  const pool = buildPool(); const cfg = STYLES[S.prefs.style] || STYLES.melange; const usedEv = {}, usedPl = {}, taken = new Set();
-  S.tickets.forEach((t, j) => { if (j === i) return; taken.add(t.name); t.legs.forEach(l => { usedEv[l.ev] = (usedEv[l.ev] || 0) + 1; if (l.player) usedPl[l.player] = (usedPl[l.player] || 0) + 1; }); });
+  const pool = buildPool(); const cfg = STYLES[S.prefs.style] || STYLES.melange; const usedEv = {}, usedPl = {}, taken = new Set(), usedLegs = [];
+  S.tickets.forEach((t, j) => { if (j === i) return; taken.add(t.name); t.legs.forEach(l => { usedEv[l.ev] = (usedEv[l.ev] || 0) + 1; if (l.player) usedPl[l.player] = (usedPl[l.player] || 0) + 1; usedLegs.push(l); }); });
   const [cmin, cmax] = targetRange(cfg);
-  const t = genTicket(pool, cfg, cmin, cmax, usedEv, usedPl);
+  const t = genTicket(pool, cfg, cmin, cmax, usedEv, usedPl, usedLegs);
   if (!t) { toast("Pas d'autre combinaison possible avec ces matchs"); return; }
   S.tickets[i] = finishTicket(t.legs, nameTicket(t.legs, taken, S.prefs.style)); render(5);
 }
@@ -244,20 +259,6 @@ function exportJournal() {
     const a = document.createElement("a"); a.href = url; a.download = "tickets_" + new Date().toISOString().slice(0, 10) + ".csv"; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
   } catch (e) { }
-}
-// Couvertures : deux tickets qui portent des sélections incompatibles sur le même match (ex. « Lyon gagne » et « Match nul »).
-// Jamais dans un même ticket (une sélection par match, garanti par genTicket) ; entre tickets c'est une couverture, affichée pour être choisie en connaissance de cause.
-function winSet(l) {
-  if (l.type === "fav" || l.type === "outsider") return new Set([l.pick]);
-  if (l.type === "nul") return new Set(["N"]);
-  if (l.type === "dc") return new Set(l.pick.split("/"));
-  return null;
-}
-function opposed(a, b) {
-  if (a.ev !== b.ev) return false;
-  if (a.mid === b.mid) return a.pos !== b.pos;
-  const wa = winSet(a), wb = winSet(b);
-  return !!(wa && wb && ![...wa].some(x => wb.has(x)));
 }
 function hedges() {
   const out = [];
@@ -384,7 +385,7 @@ function render(step, msg) {
       m.appendChild(c);
     });
     const hd = hedges();
-    if (hd.length) m.appendChild(el(`<div class="card"><h2>Couvertures entre tickets</h2>${hd.map(h => `<p class="small" style="margin:4px 0">${esc(h.match)} : « ${esc(h.a)} » (${esc(h.ta)}) contre « ${esc(h.b)} » (${esc(h.tb)})</p>`).join("")}<p class="mut small">Deux tickets ne peuvent pas gagner tous les deux sur ce match. Garde-les si c'est voulu, sinon « Régénérer » l'un des deux.</p></div>`));
+    if (hd.length) m.appendChild(el(`<div class="card"><h2>Couvertures entre tickets</h2>${hd.map(h => `<p class="small" style="margin:4px 0">${esc(h.match)} : « ${esc(h.a)} » (${esc(h.ta)}) contre « ${esc(h.b)} » (${esc(h.tb)})</p>`).join("")}<p class="mut small">Deux tickets ne peuvent pas gagner tous les deux sur ce match. Le générateur l'évite ; « Régénérer » l'un des deux.</p></div>`));
     m.appendChild(el(`<div class="card"><div class="row"><button id="all">Tout régénérer</button><button id="txt">Copier le récap</button><button id="exp">Exporter le journal (${validated.length})</button></div>
       <p class="mut small" style="margin-top:8px">Cotes de l'offre du ${S.offre ? esc(dm(S.offre.offer_created_at)) : "?"} ; celles de l'appli FDJ à l'ouverture du panier font foi. Une sélection par match et par ticket, 12 sélections max. Bonus Combi Boosté : dès 4 sélections à cote ≥ ${fmt(S.offre?.boost?.min_cote ?? 1.2)}. Le TRJ affiché est le retour théorique du ticket : l'espérance reste négative.</p></div>`));
     $("#all").onclick = () => { generateAll(); render(5); };
