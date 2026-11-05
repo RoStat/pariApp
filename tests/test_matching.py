@@ -12,7 +12,8 @@ SANS_ALIAS = [  # (libellé FDJ, libellé The Odds API) : score >= 0.82 attendu 
     ("Milan AC", "AC Milan"), ("Sparta Prague", "Sparta Praha"), ("Nottingham F.", "Nottingham Forest"), ("Leverkusen", "Bayer Leverkusen"),
     ("Lillestrøm", "Lillestrom"), ("Panathinaïkos", "Panathinaikos"), ("Hoffenheim", "TSG Hoffenheim"), ("Rennes", "Stade Rennais"),
 ]
-AVEC_ALIAS = [("Paris SG", "Paris Saint Germain"), ("Lyon", "Olympique Lyonnais"), ("Etoile Rouge", "Crvena Zvezda"), ("La Gantoise", "KAA Gent")]
+AVEC_ALIAS = [("Paris SG", "Paris Saint Germain"), ("Lyon", "Olympique Lyonnais"), ("Etoile Rouge", "Crvena Zvezda"), ("La Gantoise", "KAA Gent"),
+              ("Twente", "FC Twente Enschede"), ("Omonia Nicosie", "Omonoia FC"), ("Kairat Almaty", "FC Kairat"), ("Hap.Beer Sheva", "Hapoel Be'er Sheva")]  # cas réels du 05/11/2026
 FAUX_AMIS = [("Inter Milan", "AC Milan"), ("Man. City", "Manchester United"), ("Sparta Prague", "Slavia Prague"), ("Celta Vigo", "Vigo FC Porto")]
 
 
