@@ -245,9 +245,29 @@ function exportJournal() {
     setTimeout(() => URL.revokeObjectURL(url), 5000);
   } catch (e) { }
 }
+// Couvertures : deux tickets qui portent des sélections incompatibles sur le même match (ex. « Lyon gagne » et « Match nul »).
+// Jamais dans un même ticket (une sélection par match, garanti par genTicket) ; entre tickets c'est une couverture, affichée pour être choisie en connaissance de cause.
+function winSet(l) {
+  if (l.type === "fav" || l.type === "outsider") return new Set([l.pick]);
+  if (l.type === "nul") return new Set(["N"]);
+  if (l.type === "dc") return new Set(l.pick.split("/"));
+  return null;
+}
+function opposed(a, b) {
+  if (a.ev !== b.ev) return false;
+  if (a.mid === b.mid) return a.pos !== b.pos;
+  const wa = winSet(a), wb = winSet(b);
+  return !!(wa && wb && ![...wa].some(x => wb.has(x)));
+}
+function hedges() {
+  const out = [];
+  S.tickets.forEach((t, i) => t.legs.forEach(a => S.tickets.slice(i + 1).forEach(u => u.legs.forEach(b => { if (opposed(a, b)) out.push({ match: S.byId[a.ev].match, a: a.label, ta: t.name, b: b.label, tb: u.name }); }))));
+  return out;
+}
 function recap() {
   return S.tickets.map(t => `${t.name} · ${t.legs.length} sél. · cote ${fmt(t.cote)} → ${fmt(t.gain)} € pour ${fmt(t.mise)} € · TRJ ${pct(t.trj)} · avant ${hm(t.deadline)}\n`
-    + t.legs.map(l => `  ${hm(S.byId[l.ev].start_ts)}  ${S.byId[l.ev].match} : ${l.label} ${fmt(l.cote)}${l.isValue ? " (value)" : ""}`).join("\n") + `\n${t.link}`).join("\n\n");
+    + t.legs.map(l => `  ${hm(S.byId[l.ev].start_ts)}  ${S.byId[l.ev].match} : ${l.label} ${fmt(l.cote)}${l.isValue ? " (value)" : ""}`).join("\n") + `\n${t.link}`).join("\n\n")
+    + (hedges().length ? "\n\nCouvertures : " + hedges().map(h => `${h.match} (${h.ta} / ${h.tb})`).join(" ; ") : "");
 }
 
 // ---------- rendu ----------
@@ -363,6 +383,8 @@ function render(step, msg) {
       c.querySelector("[data-a=copy]").onclick = () => copy(t.link, "Lien copié");
       m.appendChild(c);
     });
+    const hd = hedges();
+    if (hd.length) m.appendChild(el(`<div class="card"><h2>Couvertures entre tickets</h2>${hd.map(h => `<p class="small" style="margin:4px 0">${esc(h.match)} : « ${esc(h.a)} » (${esc(h.ta)}) contre « ${esc(h.b)} » (${esc(h.tb)})</p>`).join("")}<p class="mut small">Deux tickets ne peuvent pas gagner tous les deux sur ce match. Garde-les si c'est voulu, sinon « Régénérer » l'un des deux.</p></div>`));
     m.appendChild(el(`<div class="card"><div class="row"><button id="all">Tout régénérer</button><button id="txt">Copier le récap</button><button id="exp">Exporter le journal (${validated.length})</button></div>
       <p class="mut small" style="margin-top:8px">Cotes de l'offre du ${S.offre ? esc(dm(S.offre.offer_created_at)) : "?"} ; celles de l'appli FDJ à l'ouverture du panier font foi. Une sélection par match et par ticket, 12 sélections max. Bonus Combi Boosté : dès 4 sélections à cote ≥ ${fmt(S.offre?.boost?.min_cote ?? 1.2)}. Le TRJ affiché est le retour théorique du ticket : l'espérance reste négative.</p></div>`));
     $("#all").onclick = () => { generateAll(); render(5); };
