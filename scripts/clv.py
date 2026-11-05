@@ -2,7 +2,7 @@
 """CLV (closing line value) des tickets journalisés, calculé avec les relevés "close" de data/snapshots.
 
 journal/tickets.csv (une ligne par sélection) :
-  date;ticket;match;market;pick;market_id;pos;cote_prise;mise;resultat
+  date;ticket;event_id;match;market;pick;market_id;pos;cote_prise;mise;resultat
   resultat : G (gagné), P (perdu), vide si en attente. market : 1/N/2 | Double chance | Plus/Moins 2,5 (les autres sont ignorés pour le CLV).
 
 Sortie : journal/clv.csv = la même ligne + cote_cloture_juste + clv_pct, et un résumé en console.
@@ -10,8 +10,9 @@ Règle de lecture : CLV moyen > 0 sur 200 sélections = tu bats le marché ; < 0
 """
 import csv, json, sys
 from pathlib import Path
-import sys as _sys; from pathlib import Path as _P; _sys.path.insert(0, str(_P(__file__).resolve().parent))
-from common import JOURNAL, SNAP_DIR, devig, CONFIG
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from common import JOURNAL, SNAP_DIR, CONFIG
+from odds_ref import reference_probs
 
 VAL = CONFIG["value"]
 
@@ -26,7 +27,6 @@ def closing_probs_by_event() -> dict:
             a = api_by_id.get(p["api_id"])
             if not a:
                 continue
-            from odds_ref import reference_probs
             ref = reference_probs(a)
             d = {}
             if ref.get("h2h"):
@@ -42,7 +42,7 @@ def closing_probs_by_event() -> dict:
 def main():
     src = JOURNAL / "tickets.csv"
     if not src.exists():
-        sys.exit("journal/tickets.csv absent")
+        print("journal/tickets.csv absent"); return
     closing = closing_probs_by_event()
     rows = list(csv.DictReader(src.open(encoding="utf-8"), delimiter=";"))
     out, clvs, pnl = [], [], 0.0
