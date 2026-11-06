@@ -23,6 +23,9 @@ label.small{display:block}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .nav{display:flex;justify-content:space-between;gap:8px;margin:8px 0 24px}
 .ticket{border-left:4px solid var(--acc2)}.ticket.done{opacity:.6;border-left-color:var(--acc)}
+.ticket.off{opacity:.55;border-left-color:var(--line)}
+.story{font-style:italic;color:var(--mut);font-size:14px;margin:4px 0 2px}
+.why{display:inline-block;color:var(--mut);font-size:12px;font-style:italic;line-height:1.3;margin-top:2px}
 .leg{display:flex;gap:8px;align-items:baseline;padding:5px 0;border-bottom:1px dashed var(--line);font-size:14px}.leg:last-child{border:0}
 .leg .t{font-size:11px;padding:1px 6px;border-radius:6px;background:var(--chip);color:var(--mut);flex:none;min-width:60px;text-align:center}
 .leg .m{flex:1;min-width:0}.leg .c{font-variant-numeric:tabular-nums;font-weight:600;flex:none}

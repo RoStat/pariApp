@@ -1,5 +1,6 @@
-/* PariApp v2 — lit data/offre.json, value.json, summary.json du relais GitHub, génère des tickets combinés
-   Parions Sport point de vente et les liens adj.st. Aucun framework, aucun build. Port de la v1 (artefact sql.js). */
+/* PariApp v2 — lit data/offre.json, value.json, summary.json du relais GitHub, affiche les tickets du jour composés
+   côté serveur (data/tickets.json, optionnel) et génère en secours des tickets combinés Parions Sport point de vente
+   avec les liens adj.st. Aucun framework, aucun build. Port de la v1 (artefact sql.js). */
 "use strict";
 
 // ---------- source de données ----------
@@ -22,9 +23,12 @@ const TYPES = { fav: "1N2", outsider: "Outsider", nul: "Nul", dc: "Dbl chance", 
 const MARKET_LIB = { fav: "1/N/2", outsider: "1/N/2", nul: "1/N/2", dc: "Double chance", total: "Plus/Moins 2,5", btts: "Les 2 équipes marquent", buts_eq: "Plus/Moins équipe", buteur: "Buteur", double: "Buteur 2 fois ou plus", decisif: "Joueur décisif", double_match: "Un doublé sera-t-il marqué ?" };
 
 const STEPS = ["Accueil", "Périmètre", "Compétitions", "Réglages", "Matchs", "Tickets"];
+const STEP_CLAUDE = 6;            // écran « Tickets du jour (Claude) », hors stepbar
+const VALUE_BADGE_MIN = 3;        // value_pct d'une jambe Claude à partir duquel on affiche le badge value
+// claude = contenu brut de data/tickets.json (null si absent) ; claudeTickets = ses tickets convertis au format local (finishTicket)
 const S = {
   step: 0, offre: null, summary: null, value: null, events: [], byId: {}, legsByEvent: {}, valueByKey: {},
-  scope: "soir", compsOn: new Set(), evOff: new Set(), tickets: [], loadError: null,
+  scope: "soir", compsOn: new Set(), evOff: new Set(), tickets: [], loadError: null, claude: null, claudeTickets: [],
   prefs: { nb: 5, mise: 3, gmin: 200, gmax: 2000, style: "melange", favComps: [], budgetHebdo: 30 }
 };
 const ls = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } } };
@@ -61,16 +65,23 @@ async function fetchJson(name, optional) {
     throw new Error(`${name} : ${e.message}`);
   }
 }
+// tickets.json est optionnel (404 = pas de tickets aujourd'hui) : ni cache local ni bandeau d'erreur.
+async function fetchTickets() {
+  try { const r = await fetch(RAW("tickets.json"), { cache: "no-store" }); if (!r.ok) return null; const j = await r.json(); return Array.isArray(j?.tickets) ? j : null; }
+  catch (e) { return null; }
+}
 async function load() {
   render(0, "Chargement des données…");
   try {
-    const [offre, summary, value] = await Promise.all([fetchJson("offre.json"), fetchJson("summary.json", true), fetchJson("value.json", true)]);
-    S.offre = offre; S.summary = summary || {}; S.value = value || { rows: [], picks: [], min_value_pct: 3 };
+    const [offre, summary, value, claude] = await Promise.all([fetchJson("offre.json"), fetchJson("summary.json", true), fetchJson("value.json", true), fetchTickets()]);
+    S.offre = offre; S.summary = summary || {}; S.value = value || { rows: [], picks: [], min_value_pct: 3 }; S.claude = claude;
     prepare();
+    S.claudeTickets = (claude?.tickets || []).filter(t => Array.isArray(t.legs) && t.legs.length).map(claudeTicket);
     render(0);
   } catch (e) { S.loadError = e.message; render(0, "Impossible de lire l'offre relayée : " + e.message); }
 }
 function offreAgeMin() { return S.offre?.offer_created_at ? (Date.now() - Date.parse(S.offre.offer_created_at)) / 60000 : null; }
+const ageMin = (iso) => iso ? Math.round((Date.now() - Date.parse(iso)) / 60000) : null;
 
 // ---------- préparation du pool de jambes ----------
 function prepare() {
@@ -213,9 +224,25 @@ function finishTicket(legs, name) {
   const gain = Math.min(mise * cote + bonus, b.max_win ?? Infinity);
   // TRJ effectif = produit des TRJ des marchés × multiplicateur du bonus (le bonus porte sur le gain net : 1 + boost × (1 − 1/cote))
   const trj = legs.reduce((p, l) => p * (TRJ[TRJ_KEY[l.type]] || 0.8), 1) * (1 + boost * (1 - 1 / cote));
-  const link = "https://33xb.adj.st/betslip?bet_type=1&" + legs.map(l => "market_id=" + l.mid + "," + l.pos).join("&") + ADJ;
-  return { name, legs, cote, boost, gain, trj, mise, deadline: Math.min(...legs.map(l => S.byId[l.ev].fin_ts)), link, key: legs.map(l => l.mid + ":" + l.pos).sort().join("|") };
+  return { name, legs, cote, boost, gain, trj, mise, deadline: Math.min(...legs.map(l => S.byId[l.ev].fin_ts)), link: linkFor(legs), key: keyFor(legs) };
 }
+const linkFor = (legs) => "https://33xb.adj.st/betslip?bet_type=1&" + legs.map(l => "market_id=" + l.mid + "," + l.pos).join("&") + ADJ;
+const keyFor = (legs) => legs.map(l => l.mid + ":" + l.pos).sort().join("|");
+// Un match d'une jambe Claude peut avoir disparu de l'offre rafraîchie : on retombe sur les champs portés par le ticket.
+const legMatch = (l) => S.byId[l.ev]?.match ?? l.match ?? "";
+const legStart = (l) => S.byId[l.ev]?.start_ts ?? l.start_ts ?? 0;
+
+// ---------- tickets du jour (data/tickets.json, composés et vérifiés côté serveur) ----------
+// Conversion au format des tickets locaux pour réutiliser validé / journal / récap. cote, gain, boost, trj sont ceux du fichier.
+function claudeTicket(t) {
+  const legs = t.legs.map(l => ({ ev: l.event_id, match: l.match, start_ts: l.start_ts, comp: l.comp, type: l.type, label: l.label, cote: +l.cote, mid: l.market_id, pos: l.pos,
+    player: l.player || null, market: l.market || MARKET_LIB[l.type] || l.mk || "", pick: l.pick, value: l.value_pct ?? null, isValue: l.value_pct != null && l.value_pct >= VALUE_BADGE_MIN, why: l.why || "" }))
+    .sort((a, b) => legStart(a) - legStart(b));
+  const cote = t.cote ?? legs.reduce((p, l) => p * l.cote, 1);
+  return { id: t.id, name: t.name || "Ticket", story: t.story || "", style: t.style, legs, cote, boost: t.boost || 0, gain: t.gain ?? 0, trj: t.trj ?? 0, mise: t.mise ?? S.prefs.mise,
+    deadline: t.deadline_ts ?? (t.deadline ? Date.parse(t.deadline) / 1000 : Math.min(...legs.map(l => S.byId[l.ev]?.fin_ts ?? legStart(l)))), link: t.link || linkFor(legs), key: keyFor(legs), checks: t.checks || {} };
+}
+const claudePlayable = () => S.claudeTickets.filter(t => t.deadline > nowS() + MARGE_SCAN_MIN * 60);
 function regenTicket(i) {
   const pool = buildPool(); const cfg = STYLES[S.prefs.style] || STYLES.melange; const usedEv = {}, usedPl = {}, taken = new Set(), usedLegs = [];
   S.tickets.forEach((t, j) => { if (j === i) return; taken.add(t.name); t.legs.forEach(l => { usedEv[l.ev] = (usedEv[l.ev] || 0) + 1; if (l.player) usedPl[l.player] = (usedPl[l.player] || 0) + 1; usedLegs.push(l); }); });
@@ -239,7 +266,7 @@ function setValidated(t, on) {
   if (on) {
     const now = new Date();
     validated.push({ key: t.key, name: t.name, date: now.toISOString().slice(0, 10), validated_at: now.toISOString(), mise: t.mise, cote: t.cote,
-      legs: t.legs.map(l => ({ event_id: l.ev, match: S.byId[l.ev].match, market: l.market, pick: l.pick, market_id: l.mid, pos: l.pos, cote: l.cote })) });
+      legs: t.legs.map(l => ({ event_id: l.ev, match: legMatch(l), market: l.market, pick: l.pick, market_id: l.mid, pos: l.pos, cote: l.cote })) });
   }
   saveValidated();
 }
@@ -265,10 +292,11 @@ function hedges() {
   S.tickets.forEach((t, i) => t.legs.forEach(a => S.tickets.slice(i + 1).forEach(u => u.legs.forEach(b => { if (opposed(a, b)) out.push({ match: S.byId[a.ev].match, a: a.label, ta: t.name, b: b.label, tb: u.name }); }))));
   return out;
 }
-function recap() {
-  return S.tickets.map(t => `${t.name} · ${t.legs.length} sél. · cote ${fmt(t.cote)} → ${fmt(t.gain)} € pour ${fmt(t.mise)} € · TRJ ${pct(t.trj)} · avant ${hm(t.deadline)}\n`
-    + t.legs.map(l => `  ${hm(S.byId[l.ev].start_ts)}  ${S.byId[l.ev].match} : ${l.label} ${fmt(l.cote)}${l.isValue ? " (value)" : ""}`).join("\n") + `\n${t.link}`).join("\n\n")
-    + (hedges().length ? "\n\nCouvertures : " + hedges().map(h => `${h.match} (${h.ta} / ${h.tb})`).join(" ; ") : "");
+function recap(list = S.tickets, hd = hedges()) {
+  return list.map(t => `${t.name} · ${t.legs.length} sél. · cote ${fmt(t.cote)} → ${fmt(t.gain)} € pour ${fmt(t.mise)} € · TRJ ${pct(t.trj)} · avant ${hm(t.deadline)}\n`
+    + (t.story ? `${t.story}\n` : "")
+    + t.legs.map(l => `  ${hm(legStart(l))}  ${legMatch(l)} : ${l.label} ${fmt(l.cote)}${l.isValue ? " (value)" : ""}`).join("\n") + `\n${t.link}`).join("\n\n")
+    + (hd.length ? "\n\nCouvertures : " + hd.map(h => `${h.match} (${h.ta} / ${h.tb})`).join(" ; ") : "");
 }
 
 // ---------- rendu ----------
@@ -286,6 +314,19 @@ function render(step, msg) {
     const s = S.summary || {}; const age = offreAgeMin();
     const ko = (s.next_followed_kickoffs || []).filter(k => Date.parse(k.fin) > Date.now()).slice(0, 10);
     const spent = spentThisWeek(); const cap = S.prefs.budgetHebdo || 0;
+    // Tickets du jour composés côté serveur : carte principale en tête s'il en reste au moins un jouable, sinon mention discrète plus bas.
+    const cl = S.claude; const play = claudePlayable();
+    if (cl && cl.check && cl.check.ok === false) m.appendChild(el(`<div class="banner bad">Tickets Claude : vérification en échec${cl.check.errors?.length ? " — " + esc(cl.check.errors[0]) : ""}. Compose toi-même ou vérifie chaque cote.</div>`));
+    if (play.length) {
+      const oAge = ageMin(cl.offer_created_at); const next = Math.min(...play.map(t => t.deadline));
+      const stale = S.offre && cl.offer_created_at && S.offre.offer_created_at && Date.parse(S.offre.offer_created_at) > Date.parse(cl.offer_created_at) + 60000;
+      m.appendChild(el(`<div class="card ticket"><h2>Tickets du jour (Claude)</h2>
+        <p class="small">Composés à <b>${esc(dm(cl.generated_at))}</b> sur l'offre FDJ de ${cl.offer_created_at ? esc(dm(cl.offer_created_at)) : "?"}${oAge != null ? ` (${oAge} min)` : ""}.</p>
+        <p class="small"><b>${play.length}</b> ticket${play.length > 1 ? "s" : ""} jouable${play.length > 1 ? "s" : ""}${S.claudeTickets.length > play.length ? ` (${S.claudeTickets.length - play.length} périmé${S.claudeTickets.length - play.length > 1 ? "s" : ""})` : ""} · première validation avant <b>${esc(hm(next))}</b>.</p>
+        ${stale ? `<p class="small warn">L'offre relayée a été rafraîchie depuis : les cotes de l'appli FDJ font foi.</p>` : ""}
+        <button class="pri" id="goClaude" style="width:100%">Voir les tickets →</button></div>`));
+      $("#goClaude").onclick = () => render(STEP_CLAUDE);
+    }
     m.appendChild(el(`<div class="card"><h2>État des données</h2>
       ${S.offre ? `<p class="small">Offre FDJ du <b>${esc(dm(S.offre.offer_created_at))}</b> (${age != null ? Math.round(age) + " min" : "?"}), relayée ${s.fetched_at ? esc(dm(s.fetched_at)) : "?"} · ${S.events.length} matchs jouables.</p>
       <p class="small">Référence Pinnacle : ${s.last_snapshot_at ? `relevé ${esc(dm(s.last_snapshot_at))} (${esc(s.last_snapshot_kind || "")}), <b>${s.picks_count ?? 0}</b> sélection(s) à valeur positive` : "aucun relevé pour l'instant"}${s.credits_remaining != null ? ` · ${s.credits_remaining} crédits API restants` : ""}.</p>`
@@ -297,9 +338,14 @@ function render(step, msg) {
       ko.forEach(k => c.querySelector("table").appendChild(el(`<tr><td>${esc(k.match)}<br><span class="mut">${esc(k.comp)}</span></td><td>${esc(dm(k.start))}</td></tr>`)));
       m.appendChild(c);
     }
-    m.appendChild(el(`<div class="card"><button class="pri" id="go" ${S.offre ? "" : "disabled"} style="width:100%">Préparer ma soirée →</button>
+    if (!play.length) {
+      m.appendChild(el(`<div class="card"><p class="mut" style="margin:0">Pas de tickets Claude pour l'instant (passage prévu vers 17h30, 12h30 le week-end).${S.claudeTickets.length ? ` Les ${S.claudeTickets.length} tickets composés à ${esc(dm(cl.generated_at))} sont périmés.` : ""}</p>
+        ${S.claudeTickets.length ? `<button class="sm" id="goClaude" style="margin-top:8px">Voir les tickets périmés</button>` : ""}</div>`));
+      if (S.claudeTickets.length) $("#goClaude").onclick = () => render(STEP_CLAUDE);
+    }
+    m.appendChild(el(`<div class="card"><button class="${play.length ? "" : "pri"}" id="go" ${S.offre ? "" : "disabled"} style="width:100%">${play.length ? "Composer moi-même" : "Préparer ma soirée →"}</button>
       <div class="row" style="margin-top:8px"><button class="sm" id="reload">Recharger les données</button><button class="sm" id="exp0">Exporter le journal (${validated.length})</button></div>
-      <p class="mut small" style="margin-top:8px">Outil d'organisation : il ne crée pas d'avantage. Le TRJ point de vente est plafonné à 76,5 %, un combiné multiplie les marges ; chaque ticket affiche son TRJ effectif.</p></div>`));
+      <p class="mut small" style="margin-top:8px">Outil d'organisation : il ne crée pas d'avantage, que les tickets soient composés par Claude ou ici. Le TRJ point de vente est plafonné à 76,5 %, un combiné multiplie les marges ; chaque ticket affiche son TRJ effectif.</p></div>`));
     if (S.offre) $("#go").onclick = () => render(1);
     $("#reload").onclick = () => { S.loadError = null; load(); };
     $("#exp0").onclick = exportJournal;
@@ -393,7 +439,42 @@ function render(step, msg) {
     $("#exp").onclick = exportJournal;
     nav(m, 4, null);
   }
+  if (step === STEP_CLAUDE) renderClaude(m);
   window.scrollTo(0, 0);
+}
+// Écran « Tickets du jour » : même présentation que l'étape 5, sans régénération ni retrait de jambe (tickets vérifiés côté serveur).
+function renderClaude(m) {
+  const cl = S.claude || {}; const now = nowS(); const cap = S.prefs.budgetHebdo || 0; const spent = spentThisWeek();
+  const play = claudePlayable(); const limit = now + MARGE_SCAN_MIN * 60;
+  if (cl.check && cl.check.ok === false) m.appendChild(el(`<div class="banner bad">Vérification en échec${cl.check.errors?.length ? " — " + esc(cl.check.errors[0]) : ""}. Vérifie chaque cote dans l'appli FDJ avant de valider.</div>`));
+  if (cap && spent + play.filter(t => !isValidated(t.key)).reduce((s, t) => s + t.mise, 0) > cap) m.appendChild(el(`<div class="banner warn">Plafond hebdo ${fmt(cap)} € : ${fmt(spent)} € déjà validés cette semaine.</div>`));
+  m.appendChild(el(`<div class="card"><h2>Tickets du jour (Claude)</h2><p class="mut" style="margin:0">Composés à ${cl.generated_at ? esc(dm(cl.generated_at)) : "?"} sur l'offre FDJ de ${cl.offer_created_at ? esc(dm(cl.offer_created_at)) : "?"}${cl.params ? ` · ${cl.params.nb} tickets demandés, ${fmt(cl.params.mise)} € la mise, gain visé ${fmt(cl.params.gmin)} – ${fmt(cl.params.gmax)} €` : ""}.</p></div>`));
+  if (!S.claudeTickets.length) m.appendChild(el(`<div class="card bad">Aucun ticket dans le fichier du jour.</div>`));
+  S.claudeTickets.forEach(t => {
+    const done = isValidated(t.key); const off = t.deadline <= limit; const late = !off && t.deadline - now < 30 * 60;
+    const dispo = t.checks.dispo === "warn" ? `<p class="small warn" style="margin:4px 0 0">Disponibilité d'un joueur à vérifier.</p>` : t.checks.dispo === "unknown" ? `<p class="mut small" style="margin:4px 0 0">Disponibilité des joueurs non vérifiée.</p>` : "";
+    const c = el(`<div class="card ticket ${done ? 'done' : ''} ${off ? 'off' : ''}"><div class="row between"><h2 style="margin:0">${esc(t.name)}</h2><label class="small row" style="gap:6px"><input type="checkbox" ${done ? 'checked' : ''} ${off && !done ? 'disabled' : ''} style="width:22px;height:22px;margin:0"> validé</label></div>
+      ${t.story ? `<p class="story">${esc(t.story)}</p>` : ""}
+      <div class="kpi"><span>Cote <b>${fmt(t.cote)}</b>${t.boost ? ` <span class="ok">+${fmt(t.boost * 100, 0)} %</span>` : ""}</span><span>Gain <b>${fmt(t.gain)} €</b> pour ${fmt(t.mise)} €</span><span title="Retour théorique au joueur de ce ticket, calculé côté serveur">TRJ <b class="${t.trj < 0.5 ? 'bad' : t.trj < 0.7 ? 'warn' : ''}">${pct(t.trj)}</b></span><span class="${off || late ? 'bad' : ''}">${off ? "validation fermée" : `avant <b>${hm(t.deadline)}</b>`}</span></div>
+      ${dispo}<div class="legs"></div>
+      ${off ? "" : `<a class="open" href="${esc(t.link)}" target="_blank" rel="noopener">Ouvrir dans Parions Sport</a>`}
+      <div class="row" style="margin-top:8px"><button class="sm" data-a="copy">Copier le lien</button></div></div>`);
+    t.legs.forEach(l => c.querySelector(".legs").appendChild(el(`<div class="leg"><span class="t">${TYPES[l.type] || esc(l.type)}</span><span class="m">${esc(legMatch(l))}${l.isValue ? ` <span class="badge">value +${fmt(l.value, 1)} %</span>` : ""}<br><span class="mut small">${esc(l.label)} · ${hm(legStart(l))}</span>${l.why ? `<br><span class="why">${esc(l.why)}</span>` : ""}</span><span class="c">${fmt(l.cote)}</span></div>`)));
+    c.querySelector("input").onchange = e => { setValidated(t, e.target.checked); c.classList.toggle("done", e.target.checked); if (e.target.checked && cap && spentThisWeek() > cap) toast("Plafond hebdomadaire dépassé"); };
+    c.querySelector("[data-a=copy]").onclick = () => copy(t.link, "Lien copié");
+    m.appendChild(c);
+  });
+  const notes = cl.notes || [], excl = cl.exclusions || [], warns = cl.check?.warnings || [];
+  if (notes.length || excl.length || warns.length) m.appendChild(el(`<div class="card"><h2>Notes de composition</h2>
+    ${notes.map(n => `<p class="small" style="margin:4px 0">${esc(n)}</p>`).join("")}
+    ${excl.length ? `<p class="small" style="margin:6px 0 0"><b>Joueurs écartés :</b> ${excl.map(x => esc(x.player || "?") + (x.match ? ` (${esc(x.match)}${x.reason ? ", " + esc(x.reason) : ""})` : x.reason ? ` (${esc(x.reason)})` : "")).join(" ; ")}</p>` : ""}
+    ${warns.map(w => `<p class="small warn" style="margin:6px 0 0">${esc(w)}</p>`).join("")}</div>`));
+  m.appendChild(el(`<div class="card"><div class="row"><button id="txt">Copier le récap</button><button id="exp">Exporter le journal (${validated.length})</button></div>
+    <p class="mut small" style="margin-top:8px">Tickets composés et vérifiés côté serveur sur l'offre du ${cl.offer_created_at ? esc(dm(cl.offer_created_at)) : "?"} ; les cotes de l'appli FDJ à l'ouverture du panier font foi. Pas de régénération ici : pour autre chose, compose toi-même. Le TRJ affiché est le retour théorique du ticket : l'espérance reste négative.</p></div>`));
+  $("#txt").onclick = () => copy(recap(play.length ? play : S.claudeTickets, []), "Récap copié");
+  $("#exp").onclick = exportJournal;
+  const n = el(`<div class="nav"><button id="prev">← Accueil</button><button id="next">Composer moi-même</button></div>`);
+  n.querySelector("#prev").onclick = () => render(0); n.querySelector("#next").onclick = () => render(1); m.appendChild(n);
 }
 function nav(m, prev, next, check, label) {
   const n = el(`<div class="nav"><button id="prev">← Retour</button>${next != null ? `<button class="pri" id="next">${label || "Suivant →"}</button>` : ""}</div>`);
