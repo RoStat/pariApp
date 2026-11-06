@@ -1,0 +1,9 @@
+{
+ "updated_at": "2026-11-06T10:08:34Z",
+ "status": "no_key",
+ "error": "APIFOOTBALL_KEY absent : ajouter le secret GitHub (plan gratuit api-football.com)",
+ "requests_today": 0,
+ "budget": 80,
+ "matches": {},
+ "unmatched": []
+}
