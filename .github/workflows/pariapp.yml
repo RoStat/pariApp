@@ -8,6 +8,7 @@ name: pariapp-relais
 on:
   schedule:
     - cron: "13 7-21 * * *"
+  workflow_dispatch: {}      # « Run workflow » : lancer la journée à la main si GitHub a perdu le cron (sort aussitôt si tout est fini)
 permissions:
   contents: write
   issues: write
