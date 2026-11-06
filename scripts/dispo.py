@@ -103,10 +103,17 @@ def main() -> int:
     if not key and mock is None:
         OUT.write_text(json.dumps({"updated_at": iso(now), "status": "no_key", "error": "APIFOOTBALL_KEY absent : ajouter le secret GitHub (plan gratuit api-football.com)",
                                    "requests_today": 0, "budget": D["daily_budget"], "matches": prev.get("matches", {}), "unmatched": []}, ensure_ascii=False, indent=1), encoding="utf-8")
+        update_summary(dispo_status="no_key", dispo_matches=0, dispo_requests_today=0, dispo_error=None)
         print("dispo : pas de clé APIFOOTBALL_KEY, rien relevé"); return 0
     state_all = load_json(STATE, {})
     st = state_all.setdefault("dispo", {})
     cli = Client(key, mock, st)
+    if st.get("plan_error"):  # le plan de la clé ne sert pas cette saison : inutile de réessayer avant demain (le compteur se remet à zéro par jour)
+        msg = st["plan_error"]
+        OUT.write_text(json.dumps({"updated_at": iso(now), "status": "error", "error": msg, "requests_today": st["requests"], "budget": D["daily_budget"],
+                                   "matches": {}, "unmatched": []}, ensure_ascii=False, indent=1), encoding="utf-8")
+        update_summary(dispo_status="error", dispo_matches=0, dispo_requests_today=st["requests"], dispo_error=msg)
+        print(f"dispo : {msg} (pas de nouvel essai aujourd'hui)"); return 0
     aliases = load_aliases()
     horizon = now + D["horizon_hours"] * 3600
     events = [e for e in offre["events"] if str(e["comp_id"]) in D["leagues"] and now < e["start_ts"] <= horizon]
@@ -157,6 +164,8 @@ def main() -> int:
                         m["lineups_at"] = iso(now)
     except ApiError as e:
         error = str(e)
+        if "plan" in error.lower() or "clé" in error:
+            st["plan_error"] = error + " — source indisponible : l'agent compositeur se rabat sur l'avis Pronosoft et une recherche web"
         print(f"dispo : {error}")
     status = "error" if error else "ok"
     OUT.write_text(json.dumps({"updated_at": iso(now), "status": status, "error": error, "requests_today": st["requests"], "budget": D["daily_budget"],
