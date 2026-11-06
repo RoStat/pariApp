@@ -1,0 +1,23 @@
+{"fetched_at": "2026-11-06T10:00:00Z", "offer_created_at": "2026-11-06T09:44:00Z", "offer_created_ts": 1793958240,
+ "boost": {"enabled": true, "min_cote": 1.2, "grid_pct": {"4": 2.0, "5": 3.0, "6": 5.0, "7": 7.0, "8": 10.0}, "additional_winning_limit": 1000.0, "min_stake": 1.1, "max_win": 250000.0},
+ "comps": {"45452": "L1 McDonald's"},
+ "events": [
+  {"event_id": 1, "match": "Toulouse-Strasbourg", "home": "Toulouse", "away": "Strasbourg", "comp_id": 45452, "comp": "L1 McDonald's", "sport_key": "soccer_france_ligue_one", "followed": true,
+   "start": "2026-11-06T19:45:00Z", "start_ts": 1793994300, "fin_ts": 1793994000, "markets": {
+     "1N2": {"market_id": 101, "outcomes": [{"pos": 1, "lib": "1", "cote": 1.99}, {"pos": 2, "lib": "N", "cote": 3.4}, {"pos": 3, "lib": "2", "cote": 3.6}]},
+     "DC": {"market_id": 102, "outcomes": [{"pos": 1, "lib": "1/N", "cote": 1.25}, {"pos": 2, "lib": "N/2", "cote": 1.7}, {"pos": 3, "lib": "1/2", "cote": 1.3}]},
+     "OU25": {"market_id": 103, "outcomes": [{"pos": 1, "lib": "Plus 2,5", "cote": 1.9}, {"pos": 2, "lib": "Moins 2,5", "cote": 1.8}]},
+     "BTTS": {"market_id": 104, "outcomes": [{"pos": 1, "lib": "Oui", "cote": 1.75}, {"pos": 2, "lib": "Non", "cote": 1.95}]},
+     "team_totals": [{"team": "Toulouse", "line": "1,5", "market_id": 105, "outcomes": [{"pos": 1, "lib": "Plus 1,5", "cote": 1.9}, {"pos": 2, "lib": "Moins 1,5", "cote": 1.8}]}],
+     "buteur": {"market_id": 106, "outcomes": [{"pos": 15, "lib": "Casper Tengstedt", "cote": 2.5}, {"pos": 9, "lib": "Amaaouch, Aymen", "cote": 2.65}, {"pos": 4, "lib": "Joaquin Panichelli", "cote": 2.9}]},
+     "double": {"market_id": 107, "outcomes": [{"pos": 1, "lib": "Casper Tengstedt", "cote": 8.5}, {"pos": 2, "lib": "Amaaouch, Aymen", "cote": 9.75}]},
+     "decisif": {"market_id": 108, "outcomes": [{"pos": 1, "lib": "Amaaouch, Aymen", "cote": 1.8}]}}},
+  {"event_id": 2, "match": "Auxerre-Paris FC", "home": "Auxerre", "away": "Paris FC", "comp_id": 45452, "comp": "L1 McDonald's", "sport_key": "soccer_france_ligue_one", "followed": true,
+   "start": "2026-11-07T18:00:00Z", "start_ts": 1794074400, "fin_ts": 1794074100, "markets": {
+     "1N2": {"market_id": 201, "outcomes": [{"pos": 1, "lib": "1", "cote": 2.3}, {"pos": 2, "lib": "N", "cote": 3.2}, {"pos": 3, "lib": "2", "cote": 3.1}]},
+     "OU25": {"market_id": 203, "outcomes": [{"pos": 1, "lib": "Plus 2,5", "cote": 2.0}, {"pos": 2, "lib": "Moins 2,5", "cote": 1.72}]}, "team_totals": []}},
+  {"event_id": 3, "match": "Lens-Marseille", "home": "Lens", "away": "Marseille", "comp_id": 45452, "comp": "L1 McDonald's", "sport_key": "soccer_france_ligue_one", "followed": true,
+   "start": "2026-11-08T19:45:00Z", "start_ts": 1794167100, "fin_ts": 1794166800, "markets": {
+     "1N2": {"market_id": 301, "outcomes": [{"pos": 1, "lib": "1", "cote": 2.6}, {"pos": 2, "lib": "N", "cote": 3.3}, {"pos": 3, "lib": "2", "cote": 2.6}]},
+     "double_match": {"market_id": 302, "outcomes": [{"pos": 1, "lib": "Oui", "cote": 1.7}, {"pos": 2, "lib": "Non", "cote": 2.0}]}, "team_totals": []}}
+ ]}

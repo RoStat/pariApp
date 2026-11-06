@@ -1,0 +1,122 @@
+{
+ "fixtures?from=2026-11-06&league=61&season=2026&to=2026-11-08": [
+  {
+   "fixture": {
+    "id": 9001,
+    "timestamp": 1793994300,
+    "date": "2026-11-06T19:45:00Z"
+   },
+   "league": {
+    "id": 61
+   },
+   "teams": {
+    "home": {
+     "id": 96,
+     "name": "Toulouse"
+    },
+    "away": {
+     "id": 95,
+     "name": "Strasbourg"
+    }
+   }
+  },
+  {
+   "fixture": {
+    "id": 9002,
+    "timestamp": 1794074400,
+    "date": "2026-11-07T18:00:00Z"
+   },
+   "league": {
+    "id": 61
+   },
+   "teams": {
+    "home": {
+     "id": 108,
+     "name": "Auxerre"
+    },
+    "away": {
+     "id": 1063,
+     "name": "Paris FC"
+    }
+   }
+  }
+ ],
+ "injuries?fixture=9001": [
+  {
+   "player": {
+    "id": 1,
+    "name": "Casper Tengstedt",
+    "type": "Missing Fixture",
+    "reason": "Knee Injury"
+   },
+   "team": {
+    "id": 96,
+    "name": "Toulouse"
+   }
+  },
+  {
+   "player": {
+    "id": 2,
+    "name": "Emanuel Emegha",
+    "type": "Questionable",
+    "reason": "Thigh Injury"
+   },
+   "team": {
+    "id": 95,
+    "name": "Strasbourg"
+   }
+  }
+ ],
+ "injuries?fixture=9002": [],
+ "fixtures/lineups?fixture=9001": [
+  {
+   "team": {
+    "id": 96,
+    "name": "Toulouse"
+   },
+   "formation": "3-4-3",
+   "startXI": [
+    {
+     "player": {
+      "id": 10,
+      "name": "G. Restes",
+      "pos": "G"
+     }
+    },
+    {
+     "player": {
+      "id": 11,
+      "name": "A. Amaaouch",
+      "pos": "F"
+     }
+    }
+   ],
+   "substitutes": [
+    {
+     "player": {
+      "id": 12,
+      "name": "S. Hidalgo",
+      "pos": "F"
+     }
+    }
+   ]
+  },
+  {
+   "team": {
+    "id": 95,
+    "name": "Strasbourg"
+   },
+   "formation": "3-4-2-1",
+   "startXI": [
+    {
+     "player": {
+      "id": 20,
+      "name": "J. Panichelli",
+      "pos": "F"
+     }
+    }
+   ],
+   "substitutes": []
+  }
+ ]
+}

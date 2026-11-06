@@ -1,0 +1,64 @@
+# Relais PariApp — passages ponctuels, hors de la boucle journée (groupe de concurrence distinct, sinon ils attendraient 22h) :
+#  - 08:00 UTC : règlement des résultats de la veille (scores.py, 0 crédit s'il n'y a rien à régler)
+#  - lundi 06:20 UTC : journal/weekly.md
+#  - Run workflow : tests unitaires + un passage complet, avec relevé Pinnacle forcé (pre|close) et/ou règlement à la demande
+name: pariapp-manuel
+on:
+  schedule:
+    - cron: "0 8 * * *"
+    - cron: "20 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Forcer un relevé Pinnacle (pre|close) — consomme des crédits, n'écrit pas state.json"
+        required: false
+        default: ""
+      scores:
+        description: "Lancer aussi le règlement des résultats (true) — 2 crédits par compétition en attente"
+        required: false
+        default: "false"
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: pariapp-manuel
+  cancel-in-progress: false
+jobs:
+  passage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install --quiet requests
+      - name: Tests unitaires (lancement manuel uniquement)
+        if: github.event_name == 'workflow_dispatch'
+        run: python3 -m unittest discover -s tests -v
+      - name: Offre FDJ (zip -> offre.json)
+        if: github.event_name == 'workflow_dispatch'
+        run: python3 scripts/fetch_offre.py
+      - name: Pinnacle forcé
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.force != ''
+        env: { ODDS_API_KEY: "${{ secrets.ODDS_API_KEY }}" }
+        run: python3 scripts/odds_ref.py --force "${{ github.event.inputs.force }}"
+      - name: Disponibilité des joueurs (API-Football)
+        if: github.event_name == 'workflow_dispatch'
+        env: { APIFOOTBALL_KEY: "${{ secrets.APIFOOTBALL_KEY }}" }
+        run: python3 scripts/dispo.py
+      - name: CLV du journal
+        run: test -f journal/tickets.csv && python3 scripts/clv.py || echo "pas de journal"
+      - name: Règlement des résultats (08h UTC ou sur demande)
+        if: github.event.schedule == '0 8 * * *' || github.event.inputs.scores == 'true'
+        env: { ODDS_API_KEY: "${{ secrets.ODDS_API_KEY }}" }
+        run: python3 scripts/scores.py
+      - name: Résumé hebdomadaire (lundi)
+        if: github.event.schedule == '20 6 * * 1'
+        run: python3 scripts/weekly.py
+      - name: Issue « alias manquants »
+        if: github.event_name == 'workflow_dispatch'
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: python3 scripts/alias_issue.py
+      - name: Commit si changement
+        run: bash scripts/commit_push.sh relais

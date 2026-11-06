@@ -20,5 +20,15 @@ Tout changement de nom de champ dans `data/*.json` ou `journal/tickets.csv` est 
 ### Appli (`gh-pages`)
 - PariApp v2 : lit `offre.json` + `value.json` + `summary.json` (plus de sql.js ni de fichier à choisir). Style « Discipliné », badges value, TRJ effectif, bonus Combi Boosté, plafond hebdomadaire, export CSV au format `journal/tickets.csv`.
 
-## 2026-11-06 — correctif workflow
-- `pariapp.yml` : le pas « Commit si changement » rejoue le commit sur la pointe de la branche (fetch + reset --soft + add + push, 4 essais) au lieu d'un `pull --rebase` ; checkout sur la pointe de la branche (`ref`). Cause : deux runs planifiés retardés par GitHub ont démarré à 3 s d'écart le 06/11 à 01:46 UTC, le second a échoué en conflit de rebase sur les JSON d'une ligne.
+## 2026-11-06 — v3 : boucle journée, disponibilité des joueurs, agent compositeur
+### Relais (`main`)
+- Planification : `pariapp.yml` devient un run « journée » en 3 jobs séquentiels qui bouclent (`scripts/boucle.py`, cadence 30/10 min), cron de secours horaire `13 7-21` ; `pariapp-manuel.yml` reprend résultats (08:00 UTC), hebdo et Run workflow. Cause : GitHub n'a exécuté que 4 crons sur ~55 le 05/11 (aucun relevé Pinnacle en fenêtre).
+- Commit : `scripts/commit_push.sh` rejoue le commit sur la pointe de la branche (fetch + reset --soft + add + push, 4 essais) au lieu d'un `pull --rebase` ; checkout sur `ref` de la branche. Cause : deux runs retardés démarrés à 3 s d'écart le 06/11 01:46 UTC, conflit de rebase sur des JSON d'une ligne.
+- `data/dispo.json` : nouveau (API-Football, secret `APIFOOTBALL_KEY`) ; `summary.json` : champs `dispo_status`, `dispo_matches`, `dispo_requests_today`, `dispo_error`.
+- `data/offre.json` : champ `avis` (texte de l'avis Pronosoft) sur les matchs à moins de 48 h (`offre_json.avis_hours`).
+- `data/tickets.json` : nouveau, écrit par l'agent compositeur et vérifié/complété par `scripts/check_tickets.py` (contrat dans README et `docs/COMPOSER.md`).
+- `data/state.json` : désormais commité (créneaux Pinnacle relevés, compteur API-Football) ; section `dispo`.
+- `config.json` : sections `boucle`, `dispo`, `tickets` ; `offre_json.avis_hours`.
+- Tests : `test_windows.py` réécrit pour la boucle ; nouveaux `test_dispo.py`, `test_check_tickets.py`, `tests/mock_offre.json`, `tests/mock_apifootball.json`.
+### Appli (`gh-pages`)
+- Carte et écran « Tickets du jour (Claude) » lisant `data/tickets.json` (validation, export journal, joueurs écartés, avertissements). Générateur local conservé en secours (« Composer moi-même »).

@@ -50,6 +50,24 @@
     "markets": ["1/N/2", "Double chance", "Plus/Moins", "Les 2 équipes marquent", "Buteur", "Buteur 2 fois ou plus", "Joueur décisif", "Un doublé sera-t-il marqué ?"],
     "team_total_lines": ["1,5", "2,5"],
     "player_top_n": 5,
-    "horizon_days": 7
+    "horizon_days": 7,
+    "avis_hours": 48
+  },
+  "boucle": {
+    "_doc": "Run quotidien en tranches (jobs séquentiels d'un même run, ≤ 6 h chacun) : chaque tranche boucle jusqu'à son heure de fin UTC. Cadence : offre toutes les 30 min ; toutes les 10 min quand un match suivi est à moins de near_kickoff_min du coup d'envoi (fenêtres pre [55,85] et close [1,15] garanties). Les crons de secours relancent le run s'il n'a pas démarré (GitHub perd des crons) ; le run en cours est protégé par concurrency.",
+    "tranches_utc": [["07:00", "12:30"], ["12:30", "18:00"], ["18:00", "22:30"]],
+    "cadence_min": 30, "cadence_near_min": 10, "near_kickoff_min": 100, "job_max_min": 340
+  },
+  "dispo": {
+    "_doc": "Disponibilité des joueurs via API-Football (api-sports.io, plan gratuit 100 req/jour, clé = secret APIFOOTBALL_KEY). Blessés/suspendus par ligue une fois par jour (horizon horizon_hours), compos officielles par fixture quand le coup d'envoi est à moins de lineups_before_min. Budget quotidien plafonné (compteur dans data/state.json).",
+    "base_url": "https://v3.football.api-sports.io", "season": 2026, "horizon_hours": 48, "lineups_before_min": 75,
+    "daily_budget": 80, "min_match_score": 0.82,
+    "leagues": {"45461": 2, "45460": 3, "46231": 848, "45452": 61, "45450": 62, "45457": 39, "45456": 140, "45402": 135, "45399": 78}
+  },
+  "tickets": {
+    "_doc": "Paramètres par défaut des tickets composés par l'agent Claude (docs/COMPOSER.md) et vérifiés par scripts/check_tickets.py. marge_scan_min = temps pour aller scanner en point de vente.",
+    "nb": 5, "mise": 3.0, "gain_min": 200, "gain_max": 2000, "max_legs": 12, "marge_scan_min": 45,
+    "max_matchs_communs": 1, "max_tickets_par_joueur": 2, "cote_max_jambe": 4.6,
+    "trj": {"1N2": 0.843, "DC": 0.901, "OU25": 0.832, "BTTS": 0.824, "team_total": 0.83, "buteur": 0.75, "double": 0.70, "decisif": 0.75, "double_match": 0.80}
   }
 }

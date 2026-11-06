@@ -13,7 +13,7 @@ passer au rouge pour une indisponibilité FDJ ; l'offre.json précédente reste 
 Usage : python3 scripts/fetch_offre.py            (télécharge)
         python3 scripts/fetch_offre.py --zip chemin/vers/un.zip   (sans réseau, pour tester)
 """
-import sys, json, zipfile, sqlite3, io, argparse, time
+import sys, json, zipfile, sqlite3, io, argparse, time, re, html
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import CONFIG, DATA, OFFRE_DIR, now_ts, iso, load_json, update_summary
@@ -22,6 +22,7 @@ MARKETS = CONFIG["offre_json"]["markets"]
 LINES = CONFIG["offre_json"]["team_total_lines"]
 TOP_N = CONFIG["offre_json"]["player_top_n"]
 HORIZON_DAYS = CONFIG["offre_json"].get("horizon_days", 7)
+AVIS_HOURS = CONFIG["offre_json"].get("avis_hours", 48)
 COMPS = {**CONFIG["followed_comps"], **CONFIG["other_comps_in_offre"]}
 RETRY_WAITS = (5, 15, 30)
 
@@ -53,6 +54,10 @@ def extract_sqlite(zip_bytes: bytes) -> Path:
         out.write_bytes(z.read(name))
     (OFFRE_DIR / "fetched_at.txt").write_text(iso(now_ts()) + "\n")
     return out
+
+
+def strip_html(h: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", h))).strip()
 
 
 def split_teams(match: str, team_libs: set) -> tuple:
@@ -87,7 +92,8 @@ def build_offre_json(db: Path) -> dict:
     horizon = now + HORIZON_DAYS * 86400
     comp_ids = ",".join(COMPS.keys())
     events = []
-    for e in con.execute(f"""SELECT o.event_id, o.match, o.start_ts, o.fin_ts, o.comp_ref, c.comp FROM offer_1n2 o JOIN comp c ON c.comp_id=o.comp_ref
+    avis_horizon = now + AVIS_HOURS * 3600
+    for e in con.execute(f"""SELECT o.event_id, o.match, o.start_ts, o.fin_ts, o.comp_ref, c.comp, o.edito FROM offer_1n2 o JOIN comp c ON c.comp_id=o.comp_ref
                              WHERE o.comp_ref IN ({comp_ids}) AND o.fin_ts > ? AND o.start_ts < ? ORDER BY o.start_ts, o.match""", (now, horizon)):
         mk = con.execute("SELECT market_id, lib, handicap FROM market WHERE event_id=?", (e["event_id"],)).fetchall()
         if e["match"].startswith("Multiplex") or not any(m["lib"] == "1/N/2" for m in mk):
@@ -120,9 +126,12 @@ def build_offre_json(db: Path) -> dict:
                 markets["decisif"] = {"market_id": m["market_id"], "outcomes": btns(m["market_id"], TOP_N)}
             elif lib == "Un doublé sera-t-il marqué ?":
                 markets["double_match"] = {"market_id": m["market_id"], "outcomes": btns(m["market_id"])}
-        events.append({"event_id": e["event_id"], "match": e["match"], "home": home, "away": away, "comp_id": e["comp_ref"], "comp": e["comp"],
-                       "sport_key": COMPS[str(e["comp_ref"])]["sport_key"], "followed": str(e["comp_ref"]) in CONFIG["followed_comps"],
-                       "start": iso(e["start_ts"]), "start_ts": e["start_ts"], "fin_ts": e["fin_ts"], "markets": markets})
+        ev = {"event_id": e["event_id"], "match": e["match"], "home": home, "away": away, "comp_id": e["comp_ref"], "comp": e["comp"],
+              "sport_key": COMPS[str(e["comp_ref"])]["sport_key"], "followed": str(e["comp_ref"]) in CONFIG["followed_comps"],
+              "start": iso(e["start_ts"]), "start_ts": e["start_ts"], "fin_ts": e["fin_ts"], "markets": markets}
+        if e["edito"] and e["start_ts"] <= avis_horizon:
+            ev["avis"] = strip_html(e["edito"])  # avis Pronosoft (texte) : seule source d'absents dans le zip, lu par l'agent compositeur
+        events.append(ev)
     return {"fetched_at": iso(now), "offer_created_at": iso(created) if created else None, "offer_created_ts": created,
             "link_template": "https://33xb.adj.st/betslip?bet_type=1&market_id=<market_id>,<pos>&adj_t=1toqzbnl&pr=0",
             "boost": read_boost(con), "comps": {k: v["name"] for k, v in COMPS.items()}, "events": events}
