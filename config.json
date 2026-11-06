@@ -27,6 +27,8 @@
   },
   "snapshots": {
     "_fenetres_verifiees": "Calcul explicite (tests/test_windows.py, lancé le 05/11/2026) avec les crons '5,35 7-23' et '*/10 16-21' UTC. Coups d'envoi 18h45 Paris : hiver (17h45 UTC) passages pre à 75/70/65/60 min, close à 10/5 min ; été (16h45 UTC) pre à 70 min seulement (15h35 UTC, le cron */10 ne commence qu'à 16h00), close à 10/5 min. 21h00 Paris : hiver (20h00 UTC) pre 80/70/60, close 10 ; été (19h00 UTC) pre 80/70/60, close 10. Avec les bornes initiales [60,80] et [1,12], un retard de cron de plus de 2 min faisait manquer la clôture (passage unique à 10 min) et le pre d'été de 18h45 (passage unique à 70 min). Bornes corrigées : pre [55,85] et close [1,15] tolèrent 5 min de retard sans changer le cron. Un retard supérieur à 15 min fait perdre le relevé de clôture de ce match (connu, accepté : GitHub ne garantit pas l'heure des crons).",
+    "_early": "Relevé supplémentaire 170–250 min avant le coup d'envoi : référence Pinnacle du jour pour l'agent compositeur (17h27 Paris pour un match à 20h45/21h00, 12h27 le week-end pour 15h00). Coût : 2 crédits par compétition ayant un match ce jour-là, ≈ 60 crédits/mois.",
+    "early": {"minutes_before_kickoff_min": 170, "minutes_before_kickoff_max": 250},
     "pre":   {"minutes_before_kickoff_min": 55, "minutes_before_kickoff_max": 85},
     "close": {"minutes_before_kickoff_min": 1,  "minutes_before_kickoff_max": 15}
   },
@@ -67,7 +69,7 @@
   "tickets": {
     "_doc": "Paramètres par défaut des tickets composés par l'agent Claude (docs/COMPOSER.md) et vérifiés par scripts/check_tickets.py. marge_scan_min = temps pour aller scanner en point de vente.",
     "nb": 5, "mise": 3.0, "gain_min": 200, "gain_max": 2000, "max_legs": 12, "marge_scan_min": 45,
-    "max_matchs_communs": 1, "max_tickets_par_joueur": 2, "cote_max_jambe": 4.6,
+    "max_matchs_communs": 2, "max_tickets_par_joueur": 2, "cote_max_jambe": 4.6,
     "trj": {"1N2": 0.843, "DC": 0.901, "OU25": 0.832, "BTTS": 0.824, "team_total": 0.83, "buteur": 0.75, "double": 0.70, "decisif": 0.75, "double_match": 0.80}
   }
 }

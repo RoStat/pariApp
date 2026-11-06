@@ -8,8 +8,9 @@ Tâche planifiée Claude Code (17h27 Paris tous les jours, 12h27 samedi et diman
 git checkout main && git pull --ff-only origin main
 python3 -m json.tool data/summary.json
 ```
-Lire dans l'ordre : `data/summary.json` (état, erreurs, `credits_remaining`), `data/offre.json` (matchs, marchés, `avis` Pronosoft,
-`boost`), `data/value.json` (`rows` : valeur FDJ vs Pinnacle en %, `picks` ≥ 3 %), `data/dispo.json` (absents, compos ; `status`),
+Lire dans l'ordre : `data/summary.json` (état, erreurs, `credits_remaining`, `last_snapshot_at`), `data/offre.json` (matchs, marchés, `avis` Pronosoft,
+`boost`), `data/value.json` (`rows` : valeur FDJ vs Pinnacle en %, `picks` ≥ 3 % ; le relevé `early` du jour est pris 3 à 4 h avant le coup d'envoi,
+donc juste avant ce passage ; une ligne dont `snapshot`/`start` date d'un autre jour ne vaut rien), `data/dispo.json` (absents, compos ; `status`),
 `config.json > tickets` (paramètres par défaut : nombre, mise, fourchette de gains, marge de scan).
 Si `summary.last_error` ou `offre` de plus de 3 h : le dire dans `notes`, composer quand même si l'offre est exploitable.
 
@@ -33,12 +34,17 @@ Noter chaque joueur écarté dans `exclusions` (match, joueur, raison, source).
 - Privilégier les sélections à `value_pct` ≥ 0 (surtout `picks`) ; éviter `value_pct` < −8 (FDJ nettement surcotée). Un marché sans
   référence (joueurs, buts équipe) se juge sur la cote, l'avis et le contexte, pas sur une intuition de score.
 - Cohérence interne : pas de « Moins 2,5 » avec un doublé ou « les 2 marquent » du même match (impossible de toute façon : une sélection
-  par match et par ticket) ; entre tickets, jamais deux choix incompatibles sur un même match (1 contre N, Plus contre Moins…), ≤ 1 match
-  commun entre deux tickets, un joueur dans ≤ 2 tickets.
+  par match et par ticket) ; entre tickets, jamais deux choix incompatibles sur un même match (1 contre N, Plus contre Moins…), ≤ 2 matchs
+  communs entre deux tickets (de préférence avec des marchés différents : 1N2 dans l'un, buts équipe dans l'autre), un joueur dans ≤ 2 tickets.
+- **Périmètre mince (moins de 15 matchs)** : la fourchette de gains prime sur le nombre de tickets. Faire 2 ou 3 tickets de 6 à 10 jambes
+  plutôt que 5 tickets courts à cote 5–25 : un ticket à cote 4 pour 3 € n'est pas ce que Jtab veut jouer (sauf le « discipliné »). Le dire dans `notes`.
 - Mix par défaut pour `nb = 5` : 1 « discipliné » (2–3 sélections, cote 3–8, marchés 1N2/double chance/+−2,5/les 2 marquent),
   2 « mélange » (4–8 sélections, ≥ 4 types), 1 « safe » (6–10 sélections ≤ 1,80), 1 « risqué » (3–6 sélections, outsiders/nuls/doublé).
   Cote cible des tickets non disciplinés : `gain_min / mise` à `gain_max / mise`. ≥ 4 sélections à cote ≥ 1,20 déclenchent le Combi Boosté.
 - Un nom et une phrase (`story`) par ticket ; `why` d'une ligne par jambe (fait vérifiable : forme, absents, valeur), pas de roman.
+
+Le week-end, le passage de 17h27 suit celui de 12h27 : si `data/tickets.json` du jour contient des tickets dont la `deadline` n'est pas passée,
+les garder tels quels (leurs jambes se re-résolvent) et ajouter les nouveaux à la suite ; ne jamais effacer un ticket encore jouable.
 
 ## 4. Écrire et vérifier
 `data/tickets.json` minimal (le script complète identifiants, cotes, liens, gains, TRJ, deadline) :

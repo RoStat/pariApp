@@ -45,10 +45,10 @@ Ensuite, les soirs où tu joues : bouton « Exporter le journal » dans l'appli,
 
 | Appel | Coût | Quand |
 | --- | --- | --- |
-| `/odds` (`h2h,totals`, région `eu`) | 2 crédits par compétition | fenêtres `pre` (55–85 min avant le coup d'envoi) et `close` (1–15 min) des matchs suivis, une fois par (compétition, créneau de 15 min, fenêtre) |
+| `/odds` (`h2h,totals`, région `eu`) | 2 crédits par compétition | fenêtres `early` (170–250 min avant le coup d'envoi, référence du jour pour l'agent compositeur), `pre` (55–85 min) et `close` (1–15 min) des matchs suivis, une fois par (compétition, créneau de 15 min, fenêtre) |
 | `/scores?daysFrom=3` | 2 crédits par compétition (doc API, vérifiée le 05/11/2026) | 08h UTC, uniquement les compétitions qui ont des sélections en attente dans le journal |
 
-Ordre de grandeur : 2 relevés × 2 crédits × 4 compétitions = 16 crédits par journée de match ; semaine européenne + un week-end de L1 ≈ 60 ; mois ≈ 200–250 avec le règlement des résultats.
+Ordre de grandeur : 3 relevés × 2 crédits × 4 compétitions = 24 crédits par journée de match ; semaine européenne + un week-end de L1 ≈ 90 ; mois ≈ 300–350 avec le règlement des résultats (plafond gratuit 500).
 
 Garde-fous : aucun appel hors fenêtre (`data/state.json` mémorise les créneaux relevés) ; arrêt sous `odds_api.min_credits_remaining` (50) ; un `Run workflow` forcé consomme des crédits mais n'écrit rien dans `state.json` (les crédits restants vont dans `summary.json`) ; le règlement des résultats se coupe seul si les crédits restants passent sous 120 avant le 20 du mois (`summary.scores_enabled = false`, raison dans `scores_disabled_reason`).
 
