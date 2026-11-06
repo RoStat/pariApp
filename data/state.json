@@ -6,5 +6,14 @@
   "injuries": {},
   "lineups": {},
   "plan_error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024. \u2014 source indisponible : l'agent compositeur se rabat sur l'avis Pronosoft et une recherche web"
+ },
+ "usage": {
+  "remaining": 492,
+  "used": 8,
+  "last": 2
+ },
+ "last_error": null,
+ "done": {
+  "soccer_france_ligue_one|1793994300|pre": "2026-11-06T18:25:06Z"
  }
 }

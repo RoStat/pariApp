@@ -1,17 +1,4 @@
 {
- "updated_at": "2026-11-06T18:15:08Z",
- "rows": [
-  {
-   "match": "Twente-Pafos FC",
-   "start": "2026-11-05T20:00:00Z",
-   "best_api": "FC Twente Enschede - Pafos FC",
-   "score": 0.571
-  },
-  {
-   "match": "NEC Nimègue-Omonia Nicosie",
-   "start": "2026-11-05T17:45:00Z",
-   "best_api": "NEC Nijmegen - Omonoia FC",
-   "score": 0.571
-  }
- ]
+ "updated_at": "2026-11-06T18:25:06Z",
+ "rows": []
 }
