@@ -19,3 +19,6 @@ Tout changement de nom de champ dans `data/*.json` ou `journal/tickets.csv` est 
 
 ### Appli (`gh-pages`)
 - PariApp v2 : lit `offre.json` + `value.json` + `summary.json` (plus de sql.js ni de fichier à choisir). Style « Discipliné », badges value, TRJ effectif, bonus Combi Boosté, plafond hebdomadaire, export CSV au format `journal/tickets.csv`.
+
+## 2026-11-06 — correctif workflow
+- `pariapp.yml` : le pas « Commit si changement » rejoue le commit sur la pointe de la branche (fetch + reset --soft + add + push, 4 essais) au lieu d'un `pull --rebase` ; checkout sur la pointe de la branche (`ref`). Cause : deux runs planifiés retardés par GitHub ont démarré à 3 s d'écart le 06/11 à 01:46 UTC, le second a échoué en conflit de rebase sur les JSON d'une ligne.

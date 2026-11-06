@@ -30,6 +30,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}   # pointe de la branche, pas le SHA figé au déclenchement (deux runs en file -> données à jour)
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -63,14 +65,19 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/alias_issue.py
       - name: Commit si changement
+        # Les fichiers de data/ sont régénérés entièrement à chaque passage : pas de rebase (deux runs retardés par GitHub ont
+        # démarré à 3 s d'écart le 06/11 et le rebase a échoué sur des JSON d'une seule ligne). On rejoue le commit sur la
+        # pointe de la branche : fetch, reset --soft, add, commit, push ; si quelqu'un a poussé entre-temps, on recommence.
         run: |
           git config user.name "pariapp-relais"
           git config user.email "bot@users.noreply.github.com"
-          git add data journal
-          if git diff --cached --quiet; then echo "rien de nouveau"; exit 0; fi
-          git commit -m "relais $(date -u +%Y-%m-%dT%H:%MZ)"
-          for i in 1 2 3; do
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push && exit 0
-            echo "push échoué, nouvel essai dans $((i*5)) s"; sleep $((i*5))
+          for i in 1 2 3 4; do
+            git fetch --quiet origin "${GITHUB_REF_NAME}"
+            git reset --quiet --soft "origin/${GITHUB_REF_NAME}"
+            git add data journal
+            if git diff --cached --quiet; then echo "rien de nouveau"; exit 0; fi
+            git commit --quiet -m "relais $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            echo "push refusé (autre run passé avant), nouvel essai dans $((i*5)) s"; sleep $((i*5))
           done
           exit 1
