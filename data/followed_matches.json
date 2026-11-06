@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1318918,
-  "match": "Toulouse-Strasbourg",
-  "home": "Toulouse",
-  "away": "Strasbourg",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1793994300,
-  "fin_ts": 1793994000
- },
- {
   "event_id": 1318919,
   "match": "Auxerre-Paris FC",
   "home": "Auxerre",
