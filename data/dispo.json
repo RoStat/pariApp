@@ -1,8 +1,8 @@
 {
- "updated_at": "2026-11-06T10:16:32Z",
+ "updated_at": "2026-11-06T10:19:24Z",
  "status": "error",
  "error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024.",
- "requests_today": 1,
+ "requests_today": 2,
  "budget": 80,
  "matches": {},
  "unmatched": []
