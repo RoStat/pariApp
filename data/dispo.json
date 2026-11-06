@@ -1,8 +1,8 @@
 {
- "updated_at": "2026-11-06T10:08:34Z",
- "status": "no_key",
- "error": "APIFOOTBALL_KEY absent : ajouter le secret GitHub (plan gratuit api-football.com)",
- "requests_today": 0,
+ "updated_at": "2026-11-06T10:16:32Z",
+ "status": "error",
+ "error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024.",
+ "requests_today": 1,
  "budget": 80,
  "matches": {},
  "unmatched": []
