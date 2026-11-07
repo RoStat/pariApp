@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-07T18:35:02Z",
+ "updated_at": "2026-11-07T18:45:05Z",
  "min_value_pct": 3.0,
  "rows": [
   {
@@ -11,34 +11,15 @@
    "market": "Double chance",
    "pick": "1/N",
    "cote_fdj": 1.03,
-   "p_juste": 0.9445,
+   "p_juste": 0.946,
    "cote_juste": 1.06,
-   "value_pct": -2.71,
+   "value_pct": -2.57,
    "mise_pct_bankroll": 0.0,
    "market_id": 36313893,
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36313893,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
-  },
-  {
-   "event_id": 1318920,
-   "match": "Paris SG-Troyes",
-   "comp": "L1 McDonald's",
-   "start": "2026-11-07T20:05:00Z",
-   "fin_ts": 1794081600,
-   "market": "1/N/2",
-   "pick": "N",
-   "cote_fdj": 9.0,
-   "p_juste": 0.1066,
-   "cote_juste": 9.38,
-   "value_pct": -4.08,
-   "mise_pct_bankroll": 0.0,
-   "market_id": 36077102,
-   "pos": 2,
-   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077102,2&adj_t=1toqzbnl&pr=0",
-   "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318920,
@@ -49,15 +30,34 @@
    "market": "Double chance",
    "pick": "1/2",
    "cote_fdj": 1.06,
-   "p_juste": 0.8934,
+   "p_juste": 0.8953,
    "cote_juste": 1.12,
-   "value_pct": -5.3,
+   "value_pct": -5.1,
    "mise_pct_bankroll": 0.0,
    "market_id": 36313893,
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36313893,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
+  },
+  {
+   "event_id": 1318920,
+   "match": "Paris SG-Troyes",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-07T20:05:00Z",
+   "fin_ts": 1794081600,
+   "market": "1/N/2",
+   "pick": "N",
+   "cote_fdj": 9.0,
+   "p_juste": 0.1047,
+   "cote_juste": 9.55,
+   "value_pct": -5.77,
+   "mise_pct_bankroll": 0.0,
+   "market_id": 36077102,
+   "pos": 2,
+   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077102,2&adj_t=1toqzbnl&pr=0",
+   "reference": "pinnacle",
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -76,7 +76,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077113,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318926,
@@ -95,7 +95,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360958,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318921,
@@ -114,7 +114,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36350935,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -133,7 +133,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36378165,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318923,
@@ -152,7 +152,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360416,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318923,
@@ -171,7 +171,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360416,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318924,
@@ -190,7 +190,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360210,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318926,
@@ -209,7 +209,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360958,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318921,
@@ -228,7 +228,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36350935,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -247,7 +247,26 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077113,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
+  },
+  {
+   "event_id": 1318920,
+   "match": "Paris SG-Troyes",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-07T20:05:00Z",
+   "fin_ts": 1794081600,
+   "market": "1/N/2",
+   "pick": "1",
+   "cote_fdj": 1.08,
+   "p_juste": 0.8413,
+   "cote_juste": 1.19,
+   "value_pct": -9.14,
+   "mise_pct_bankroll": 0.0,
+   "market_id": 36077102,
+   "pos": 1,
+   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077102,1&adj_t=1toqzbnl&pr=0",
+   "reference": "pinnacle",
+   "snapshot": "pre"
   },
   {
    "event_id": 1318922,
@@ -266,26 +285,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360738,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
-  },
-  {
-   "event_id": 1318920,
-   "match": "Paris SG-Troyes",
-   "comp": "L1 McDonald's",
-   "start": "2026-11-07T20:05:00Z",
-   "fin_ts": 1794081600,
-   "market": "1/N/2",
-   "pick": "1",
-   "cote_fdj": 1.08,
-   "p_juste": 0.8379,
-   "cote_juste": 1.19,
-   "value_pct": -9.5,
-   "mise_pct_bankroll": 0.0,
-   "market_id": 36077102,
-   "pos": 1,
-   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077102,1&adj_t=1toqzbnl&pr=0",
-   "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318922,
@@ -304,7 +304,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360738,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318922,
@@ -323,7 +323,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360738,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -342,7 +342,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36378165,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318924,
@@ -361,26 +361,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360210,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
-  },
-  {
-   "event_id": 1318920,
-   "match": "Paris SG-Troyes",
-   "comp": "L1 McDonald's",
-   "start": "2026-11-07T20:05:00Z",
-   "fin_ts": 1794081600,
-   "market": "1/N/2",
-   "pick": "2",
-   "cote_fdj": 16.0,
-   "p_juste": 0.0555,
-   "cote_juste": 18.02,
-   "value_pct": -11.23,
-   "mise_pct_bankroll": 0.0,
-   "market_id": 36077102,
-   "pos": 3,
-   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077102,3&adj_t=1toqzbnl&pr=0",
-   "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -399,7 +380,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077113,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -418,7 +399,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36378165,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318924,
@@ -437,7 +418,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360210,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318926,
@@ -456,7 +437,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077117,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318923,
@@ -475,7 +456,26 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077110,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
+  },
+  {
+   "event_id": 1318920,
+   "match": "Paris SG-Troyes",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-07T20:05:00Z",
+   "fin_ts": 1794081600,
+   "market": "1/N/2",
+   "pick": "2",
+   "cote_fdj": 16.0,
+   "p_juste": 0.054,
+   "cote_juste": 18.5,
+   "value_pct": -13.52,
+   "mise_pct_bankroll": 0.0,
+   "market_id": 36077102,
+   "pos": 3,
+   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077102,3&adj_t=1toqzbnl&pr=0",
+   "reference": "pinnacle",
+   "snapshot": "pre"
   },
   {
    "event_id": 1318921,
@@ -494,7 +494,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36350935,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318924,
@@ -513,7 +513,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077112,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318921,
@@ -532,7 +532,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077105,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318921,
@@ -551,7 +551,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077105,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318923,
@@ -570,7 +570,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360416,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318922,
@@ -589,7 +589,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077107,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318923,
@@ -608,7 +608,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077110,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318922,
@@ -627,7 +627,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077107,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318924,
@@ -646,7 +646,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077112,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318926,
@@ -665,7 +665,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36360958,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318924,
@@ -684,7 +684,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077112,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318922,
@@ -703,7 +703,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077107,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318926,
@@ -722,7 +722,7 @@
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077117,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318921,
@@ -741,7 +741,7 @@
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077105,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318926,
@@ -760,7 +760,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077117,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318923,
@@ -779,7 +779,7 @@
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077110,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318920,
@@ -789,16 +789,16 @@
    "fin_ts": 1794081600,
    "market": "Double chance",
    "pick": "N/2",
-   "cote_fdj": 3.25,
-   "p_juste": 0.1621,
-   "cote_juste": 6.17,
-   "value_pct": -47.33,
+   "cote_fdj": 3.35,
+   "p_juste": 0.1587,
+   "cote_juste": 6.3,
+   "value_pct": -46.82,
    "mise_pct_bankroll": 0.0,
    "market_id": 36313893,
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36313893,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   }
  ],
  "picks": []
