@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1318920,
-  "match": "Paris SG-Troyes",
-  "home": "Paris SG",
-  "away": "Troyes",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794081900,
-  "fin_ts": 1794081600
- },
- {
   "event_id": 1318921,
   "match": "Rennes-Lille",
   "home": "Rennes",

@@ -1,15 +1,9 @@
 {
- "offer_created_at": "2026-11-07T19:52:37Z",
- "fetched_at": "2026-11-07T19:55:01Z",
- "events_count": 25,
- "followed_count": 7,
+ "offer_created_at": "2026-11-07T20:00:01Z",
+ "fetched_at": "2026-11-07T20:05:03Z",
+ "events_count": 24,
+ "followed_count": 6,
  "next_followed_kickoffs": [
-  {
-   "match": "Paris SG-Troyes",
-   "comp": "L1 McDonald's",
-   "start": "2026-11-07T20:05:00Z",
-   "fin": "2026-11-07T20:00:00Z"
-  },
   {
    "match": "Rennes-Lille",
    "comp": "L1 McDonald's",
@@ -49,7 +43,7 @@
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-07T19:55:02Z",
+ "updated_at": "2026-11-07T20:05:03Z",
  "picks_count": 0,
  "value_rows": 42,
  "last_snapshot_at": "2026-11-07T19:55:02Z",
