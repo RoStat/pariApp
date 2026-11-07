@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1318919,
-  "match": "Auxerre-Paris FC",
-  "home": "Auxerre",
-  "away": "Paris FC",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794074400,
-  "fin_ts": 1794074100
- },
- {
   "event_id": 1318920,
   "match": "Paris SG-Troyes",
   "home": "Paris SG",
