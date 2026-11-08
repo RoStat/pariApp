@@ -1,45 +1,5 @@
 [
  {
-  "event_id": 1318923,
-  "match": "Angers-Nice",
-  "home": "Angers",
-  "away": "Nice",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794154500,
-  "fin_ts": 1794154200
- },
- {
-  "event_id": 1318924,
-  "match": "Brest-Lyon",
-  "home": "Brest",
-  "away": "Lyon",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794154500,
-  "fin_ts": 1794154200
- },
- {
-  "event_id": 1318922,
-  "match": "Le Havre-Lorient",
-  "home": "Le Havre",
-  "away": "Lorient",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794154500,
-  "fin_ts": 1794154200
- },
- {
-  "event_id": 1318926,
-  "match": "Le Mans-Monaco",
-  "home": "Le Mans",
-  "away": "Monaco",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794154500,
-  "fin_ts": 1794154200
- },
- {
   "event_id": 1318925,
   "match": "Lens-Marseille",
   "home": "Lens",
