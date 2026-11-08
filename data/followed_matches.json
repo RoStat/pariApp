@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1318921,
-  "match": "Rennes-Lille",
-  "home": "Rennes",
-  "away": "Lille",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794146400,
-  "fin_ts": 1794146100
- },
- {
   "event_id": 1318923,
   "match": "Angers-Nice",
   "home": "Angers",
