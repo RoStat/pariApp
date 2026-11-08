@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-08T18:15:03Z",
+ "updated_at": "2026-11-08T18:25:04Z",
  "min_value_pct": 3.0,
  "rows": [
   {
@@ -10,16 +10,16 @@
    "fin_ts": 1794166800,
    "market": "1/N/2",
    "pick": "N",
-   "cote_fdj": 3.6,
-   "p_juste": 0.2641,
-   "cote_juste": 3.79,
-   "value_pct": -4.91,
+   "cote_fdj": 3.7,
+   "p_juste": 0.2655,
+   "cote_juste": 3.77,
+   "value_pct": -1.75,
    "mise_pct_bankroll": 0.0,
    "market_id": 36077113,
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077113,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -30,15 +30,15 @@
    "market": "1/N/2",
    "pick": "1",
    "cote_fdj": 2.2,
-   "p_juste": 0.4252,
-   "cote_juste": 2.35,
-   "value_pct": -6.46,
+   "p_juste": 0.4177,
+   "cote_juste": 2.39,
+   "value_pct": -8.1,
    "mise_pct_bankroll": 0.0,
    "market_id": 36077113,
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077113,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -49,15 +49,15 @@
    "market": "Double chance",
    "pick": "1/2",
    "cote_fdj": 1.25,
-   "p_juste": 0.7359,
+   "p_juste": 0.7345,
    "cote_juste": 1.36,
-   "value_pct": -8.02,
+   "value_pct": -8.19,
    "mise_pct_bankroll": 0.0,
    "market_id": 36378165,
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36378165,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -67,16 +67,16 @@
    "fin_ts": 1794166800,
    "market": "Double chance",
    "pick": "1/N",
-   "cote_fdj": 1.32,
-   "p_juste": 0.6893,
-   "cote_juste": 1.45,
-   "value_pct": -9.01,
+   "cote_fdj": 1.33,
+   "p_juste": 0.6833,
+   "cote_juste": 1.46,
+   "value_pct": -9.12,
    "mise_pct_bankroll": 0.0,
    "market_id": 36378165,
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36378165,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -86,16 +86,16 @@
    "fin_ts": 1794166800,
    "market": "Double chance",
    "pick": "N/2",
-   "cote_fdj": 1.51,
-   "p_juste": 0.5748,
-   "cote_juste": 1.74,
-   "value_pct": -13.2,
+   "cote_fdj": 1.49,
+   "p_juste": 0.5823,
+   "cote_juste": 1.72,
+   "value_pct": -13.24,
    "mise_pct_bankroll": 0.0,
    "market_id": 36378165,
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36378165,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1318925,
@@ -105,16 +105,16 @@
    "fin_ts": 1794166800,
    "market": "1/N/2",
    "pick": "2",
-   "cote_fdj": 2.7,
-   "p_juste": 0.3107,
-   "cote_juste": 3.22,
-   "value_pct": -16.11,
+   "cote_fdj": 2.65,
+   "p_juste": 0.3167,
+   "cote_juste": 3.16,
+   "value_pct": -16.07,
    "mise_pct_bankroll": 0.0,
    "market_id": 36077113,
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36077113,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   }
  ],
  "picks": []
