@@ -1,6 +1,6 @@
 {
- "offer_created_at": "2026-11-08T14:40:54Z",
- "fetched_at": "2026-11-08T14:45:06Z",
+ "offer_created_at": "2026-11-08T14:50:54Z",
+ "fetched_at": "2026-11-08T14:55:05Z",
  "events_count": 14,
  "followed_count": 5,
  "next_followed_kickoffs": [
@@ -37,19 +37,17 @@
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-08T14:49:45Z",
+ "updated_at": "2026-11-08T14:55:05Z",
  "picks_count": 0,
- "value_rows": 42,
- "last_snapshot_at": "2026-11-07T19:55:02Z",
- "last_snapshot_kind": "close",
+ "value_rows": 32,
+ "last_snapshot_at": "2026-11-08T14:55:05Z",
+ "last_snapshot_kind": "pre",
  "unmatched_followed": 0,
  "odds_error": null,
- "credits_remaining": 482,
- "credits_used": 18,
+ "credits_remaining": 480,
+ "credits_used": 20,
  "dispo_status": "error",
  "dispo_matches": 0,
  "dispo_requests_today": 1,
- "dispo_error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024. — source indisponible : l'agent compositeur se rabat sur l'avis Pronosoft et une recherche web",
- "scores_last_run": "2026-11-08T14:49:45Z",
- "scores_pending": 0
+ "dispo_error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024. — source indisponible : l'agent compositeur se rabat sur l'avis Pronosoft et une recherche web"
 }
