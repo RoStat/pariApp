@@ -1,11 +1,10 @@
 {
  "dispo": {
-  "day": "2026-11-08",
-  "requests": 1,
+  "day": "2026-11-09",
+  "requests": 0,
   "fixtures": {},
   "injuries": {},
-  "lineups": {},
-  "plan_error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024. \u2014 source indisponible : l'agent compositeur se rabat sur l'avis Pronosoft et une recherche web"
+  "lineups": {}
  },
  "usage": {
   "remaining": 474,

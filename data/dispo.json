@@ -1,8 +1,8 @@
 {
- "updated_at": "2026-11-08T22:15:36Z",
- "status": "error",
- "error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024. — source indisponible : l'agent compositeur se rabat sur l'avis Pronosoft et une recherche web",
- "requests_today": 1,
+ "updated_at": "2026-11-09T17:26:26Z",
+ "status": "ok",
+ "error": null,
+ "requests_today": 0,
  "budget": 80,
  "matches": {},
  "unmatched": []
