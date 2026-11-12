@@ -9,7 +9,12 @@ git config user.name "pariapp-relais" >/dev/null
 git config user.email "bot@users.noreply.github.com" >/dev/null
 for i in 1 2 3 4; do
   git fetch --quiet origin "$BR" || { echo "fetch échoué"; sleep $((i*5)); continue; }
-  git reset --quiet --soft "origin/$BR"
+  # --mixed (et non --soft) : l'index repart de la pointe distante, sinon le commit défait tout ce qu'un autre a poussé
+  # entre-temps hors data/ (config.json, scripts). Puis on reprend de la pointe ce que le relais ne génère pas :
+  # le code/config (pris en compte dès le passage suivant) et data/tickets.json (écrit par l'agent compositeur).
+  git reset --quiet --mixed "origin/$BR"
+  git checkout --quiet "origin/$BR" -- . ':(exclude)data' ':(exclude)journal'
+  if git cat-file -e "origin/$BR:data/tickets.json" 2>/dev/null; then git checkout --quiet "origin/$BR" -- data/tickets.json; fi
   git add data journal
   if git diff --cached --quiet; then echo "rien de nouveau"; exit 0; fi
   git commit --quiet -m "$PREFIX $(date -u +%Y-%m-%dT%H:%MZ)"

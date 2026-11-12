@@ -13,7 +13,7 @@
     "45457": {"name": "Premier League", "sport_key": "soccer_epl"},
     "45456": {"name": "LaLiga", "sport_key": "soccer_spain_la_liga"},
     "45402": {"name": "Serie A", "sport_key": "soccer_italy_serie_a"},
-    "45399": {"name": "Bundesliga 1", "sport_key": "soccer_germany_bundesliga"}
+    "45399": {"name": "Bundesliga 1", "sport_key": "soccer_germany_bundesliga"}, "45537": {"name": "Ligue des Nations", "sport_key": "soccer_uefa_nations_league"}
   },
   "odds_api": {
     "base_url": "https://api.the-odds-api.com/v4",
