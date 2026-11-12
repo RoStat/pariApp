@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-12T10:16:29Z",
- "offer_created_at": "2026-11-12T10:07:26Z",
+ "generated_at": "2026-11-12T16:28:40Z",
+ "offer_created_at": "2026-11-12T16:07:43Z",
  "author": "claude",
  "params": {
   "nb": 2,
@@ -9,10 +9,10 @@
   "gmax": 2000
  },
  "notes": [
-  "Composé à la demande à 10h15Z sur l'offre de 10h07Z : cotes à revérifier au scan en fin d'après-midi.",
-  "Trêve internationale : périmètre = 8 matchs de Ligue des Nations ce soir (17h00Z et 19h45Z), compétition non suivie. Périmètre mince : 1 ticket long + 1 discipliné, 1 seul match commun (Italie-France, marchés identiques).",
-  "Aucune référence Pinnacle (dernier relevé 2026-11-08) : jugement sur cotes et avis Pronosoft.",
-  "dispo.json sans match couvert ; recherches web sans compo datée du jour ou de la veille → aucun pari joueur."
+  "Passage de 16h28Z sur l'offre de 16h07Z : périmètre = 6 matchs de Ligue des Nations à 19h45Z (compétition non suivie).",
+  "'Sept nations' (composé ce matin) retiré : ses deux jambes de 17h00Z ferment à 16h55Z, moins de 45 min de marge, le vérificateur le refuse. 'Cinq nations' en reprend les 5 jambes de 19h45Z aux cotes actuelles.",
+  "'Cinq nations' est sous la fourchette de gains (cote ~19) : avec 6 matchs et 1 match commun max, atteindre 67 imposerait d'empiler des jambes fragiles. 'Duo discipliné' conservé, cotes re-résolues.",
+  "Aucune référence Pinnacle (dernier relevé 2026-11-08) ; dispo.json sans match couvert et aucune compo datée du jour → aucun pari joueur."
  ],
  "exclusions": [
   {
@@ -43,52 +43,10 @@
  "tickets": [
   {
    "id": "2026-11-12-1",
-   "name": "Sept nations",
+   "name": "Cinq nations",
    "style": "melange",
-   "story": "Les favoris de la soirée de Ligue des Nations, avec des buts côté Angleterre, Espagne et Biélorussie.",
+   "story": "Les cinq jambes de 20h45 du ticket du matin : France, Albanie et trois attaques prolifiques.",
    "legs": [
-    {
-     "event_id": 1316317,
-     "match": "Turquie-Belgique",
-     "comp": "LDN",
-     "start": "2026-11-12T17:00:00Z",
-     "start_ts": 1794502800,
-     "fin_ts": 1794502500,
-     "mk": "1N2",
-     "market": "1/N/2",
-     "pick": "2",
-     "type": "fav",
-     "label": "Belgique gagne",
-     "market_id": 35805461,
-     "pos": 3,
-     "cote": 1.68,
-     "player": null,
-     "team": null,
-     "line": null,
-     "value_pct": null,
-     "why": "Belgique : 3-0 à l'aller, Turquie 4 défaites et 11 buts encaissés, avis 1-2"
-    },
-    {
-     "event_id": 1316314,
-     "match": "Arménie-Chypre",
-     "comp": "LDN",
-     "start": "2026-11-12T17:00:00Z",
-     "start_ts": 1794502800,
-     "fin_ts": 1794502500,
-     "mk": "1N2",
-     "market": "1/N/2",
-     "pick": "2",
-     "type": "outsider",
-     "label": "Chypre gagne",
-     "market_id": 35805451,
-     "pos": 3,
-     "cote": 2.4,
-     "player": null,
-     "team": null,
-     "line": null,
-     "value_pct": null,
-     "why": "Chypre : deux succès en octobre, avis 1-2 (jambe piquante)"
-    },
     {
      "event_id": 1309731,
      "match": "Italie-France",
@@ -103,7 +61,7 @@
      "label": "France gagne",
      "market_id": 35225229,
      "pos": 3,
-     "cote": 1.79,
+     "cote": 1.84,
      "player": null,
      "team": null,
      "line": null,
@@ -124,7 +82,7 @@
      "label": "Albanie gagne",
      "market_id": 35992841,
      "pos": 1,
-     "cote": 1.96,
+     "cote": 1.94,
      "player": null,
      "team": null,
      "line": null,
@@ -145,7 +103,7 @@
      "label": "Angleterre +2,5 buts",
      "market_id": 36475823,
      "pos": 1,
-     "cote": 1.75,
+     "cote": 1.78,
      "player": null,
      "team": "Angleterre",
      "line": "2,5",
@@ -166,7 +124,7 @@
      "label": "Espagne +2,5 buts",
      "market_id": 36475595,
      "pos": 1,
-     "cote": 1.75,
+     "cote": 1.72,
      "player": null,
      "team": "Espagne",
      "line": "2,5",
@@ -187,7 +145,7 @@
      "label": "Biélorussie +2,5 buts",
      "market_id": 36475929,
      "pos": 1,
-     "cote": 1.8,
+     "cote": 1.75,
      "player": null,
      "team": "Biélorussie",
      "line": "2,5",
@@ -195,15 +153,15 @@
      "why": "San Marin : 16 buts encaissés en 4 matchs, avis 0-3"
     }
    ],
-   "cote": 77.98,
+   "cote": 19.13,
    "mise": 3.0,
-   "gain": 252.41,
-   "boost": 0.08,
-   "trj": 0.312,
-   "deadline": "2026-11-12T16:55:00Z",
-   "deadline_ts": 1794502500,
-   "link": "https://33xb.adj.st/betslip?bet_type=1&market_id=35805461,3&market_id=35805451,3&market_id=35225229,3&market_id=35992841,1&market_id=36475823,1&market_id=36475595,1&market_id=36475929,1&adj_t=1toqzbnl&pr=0",
-   "key": "35225229:3|35805451:3|35805461:3|35992841:1|36475595:1|36475823:1|36475929:1",
+   "gain": 59.55,
+   "boost": 0.04,
+   "trj": 0.422,
+   "deadline": "2026-11-12T19:40:00Z",
+   "deadline_ts": 1794512400,
+   "link": "https://33xb.adj.st/betslip?bet_type=1&market_id=35225229,3&market_id=35992841,1&market_id=36475823,1&market_id=36475595,1&market_id=36475929,1&adj_t=1toqzbnl&pr=0",
+   "key": "35225229:3|35992841:1|36475595:1|36475823:1|36475929:1",
    "checks": {
     "one_per_match": true,
     "no_hedge": true,
@@ -230,7 +188,7 @@
      "label": "France gagne",
      "market_id": 35225229,
      "pos": 3,
-     "cote": 1.79,
+     "cote": 1.84,
      "player": null,
      "team": null,
      "line": null,
@@ -251,7 +209,7 @@
      "label": "Monténégro +2,5 buts",
      "market_id": 36476515,
      "pos": 1,
-     "cote": 2.15,
+     "cote": 2.1,
      "player": null,
      "team": "Monténégro",
      "line": "2,5",
@@ -259,9 +217,9 @@
      "why": "Monténégro invaincu, Lettonie poreuse, avis 2-0"
     }
    ],
-   "cote": 3.85,
+   "cote": 3.86,
    "mise": 3.0,
-   "gain": 11.55,
+   "gain": 11.59,
    "boost": 0.0,
    "trj": 0.7,
    "deadline": "2026-11-12T19:40:00Z",
@@ -278,7 +236,9 @@
  "check": {
   "ok": true,
   "errors": [],
-  "warnings": [],
-  "checked_at": "2026-11-12T10:16:29Z"
+  "warnings": [
+   "[Cinq nations] : cote 19.1 hors fourchette 67–667"
+  ],
+  "checked_at": "2026-11-12T16:28:53Z"
  }
 }
