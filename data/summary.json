@@ -1,12 +1,19 @@
 {
- "offer_created_at": "2026-11-13T19:16:04Z",
- "fetched_at": "2026-11-13T19:19:30Z",
- "events_count": 30,
- "followed_count": 0,
- "next_followed_kickoffs": [],
+ "offer_created_at": "2026-11-13T19:46:09Z",
+ "fetched_at": "2026-11-13T19:49:31Z",
+ "events_count": 23,
+ "followed_count": 1,
+ "next_followed_kickoffs": [
+  {
+   "match": "Troyes-Le Havre",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-20T19:45:00Z",
+   "fin": "2026-11-20T19:40:00Z"
+  }
+ ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-13T19:19:31Z",
+ "updated_at": "2026-11-13T19:49:31Z",
  "picks_count": 0,
  "value_rows": 6,
  "last_snapshot_at": "2026-11-08T19:35:04Z",
