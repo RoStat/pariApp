@@ -1,6 +1,6 @@
 {
- "offer_created_at": "2026-11-15T18:07:37Z",
- "fetched_at": "2026-11-15T18:13:25Z",
+ "offer_created_at": "2026-11-15T18:39:23Z",
+ "fetched_at": "2026-11-15T18:43:25Z",
  "events_count": 71,
  "followed_count": 8,
  "next_followed_kickoffs": [
@@ -55,7 +55,7 @@
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-15T18:13:26Z",
+ "updated_at": "2026-11-15T18:43:27Z",
  "picks_count": 0,
  "value_rows": 6,
  "last_snapshot_at": "2026-11-08T19:35:04Z",
