@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-15T11:28:23Z",
- "offer_created_at": "2026-11-14T22:02:30Z",
+ "generated_at": "2026-11-15T16:28:04Z",
+ "offer_created_at": "2026-11-15T16:08:02Z",
  "author": "claude",
  "params": {
   "nb": 1,
@@ -9,11 +9,10 @@
   "gmax": 2000
  },
  "notes": [
-  "Offre périmée : dernier relevé relais 2026-11-14T22:06Z (≈13 h, le cron GitHub du matin n'est pas encore parti) ; cotes à revérifier au scan.",
-  "Trêve internationale : périmètre = 8 matchs de Ligue des Nations (14h00Z ×2, 17h00Z ×2, 19h45Z ×4), compétition non suivie. Finlande-San Marin écarté (victoire finlandaise non proposée, seul marché utile à 1,18).",
-  "Un seul ticket : il faut 7 matchs pour atteindre la fourchette de gains, tout second ticket partagerait plus d'un match. Il ferme à 13h55Z ; le passage de 16h27Z recomposera sur les matchs de 19h45Z.",
-  "Aucune référence Pinnacle (dernier relevé 2026-11-08) ; dispo.json sans match couvert → aucun pari joueur.",
-  "Ticket du 14/11 expiré, non conservé."
+  "Périmètre très mince : 4 matchs de Ligue des Nations à 19h45Z (compétition non suivie). Un seul ticket, sous la fourchette de gains : une cote de 67 est hors d'atteinte avec 4 matchs sans jambes artificielles.",
+  "'Sept du dimanche' (midi) expiré depuis 13h55Z, non conservé ; ce ticket reprend ses quatre matchs du soir aux cotes de 16h08Z.",
+  "Espagne-Angleterre : la cote de l'Espagne est passée de 1,56 à 1,80 depuis hier soir (mouvement net contre l'Espagne, cause inconnue) ; jambe remplacée par 'les 2 équipes marquent', cohérente avec l'avis 2-1.",
+  "Aucune référence Pinnacle (dernier relevé 2026-11-08) ; dispo.json sans match couvert → aucun pari joueur."
  ],
  "exclusions": [
   {
@@ -26,73 +25,10 @@
  "tickets": [
   {
    "id": "2026-11-15-1",
-   "name": "Sept du dimanche",
-   "style": "melange",
-   "story": "Dernière journée de Ligue des Nations dans le sens de l'avis Pronosoft, avec l'Italie à Bruxelles et les buts croates pour la cote.",
+   "name": "Quatre du dimanche soir",
+   "style": "risque",
+   "story": "Dernière journée : l'Italie à Bruxelles, les buts croates et français, un Espagne-Angleterre ouvert.",
    "legs": [
-    {
-     "event_id": 1318215,
-     "match": "Chypre-Monténégro",
-     "comp": "LDN",
-     "start": "2026-11-15T14:00:00Z",
-     "start_ts": 1794751200,
-     "fin_ts": 1794750900,
-     "mk": "BTTS",
-     "market": "Les 2 équipes marquent",
-     "pick": "Oui",
-     "type": "btts",
-     "label": "Les 2 équipes marquent",
-     "market_id": 36568101,
-     "pos": 1,
-     "cote": 1.55,
-     "player": null,
-     "team": null,
-     "line": null,
-     "value_pct": null,
-     "why": "Chypre veut sa revanche, Monténégro leader peut lâcher du lest, avis 3-1"
-    },
-    {
-     "event_id": 1320903,
-     "match": "Lettonie-Arménie",
-     "comp": "LDN",
-     "start": "2026-11-15T14:00:00Z",
-     "start_ts": 1794751200,
-     "fin_ts": 1794750900,
-     "mk": "1N2",
-     "market": "1/N/2",
-     "pick": "2",
-     "type": "fav",
-     "label": "Arménie gagne",
-     "market_id": 36289252,
-     "pos": 3,
-     "cote": 2.0,
-     "player": null,
-     "team": null,
-     "line": null,
-     "value_pct": null,
-     "why": "Arménie vainqueur logique à l'aller, avis 0-2 (jambe piquante)"
-    },
-    {
-     "event_id": 1318210,
-     "match": "Biélorussie-Albanie",
-     "comp": "LDN",
-     "start": "2026-11-15T17:00:00Z",
-     "start_ts": 1794762000,
-     "fin_ts": 1794761700,
-     "mk": "1N2",
-     "market": "1/N/2",
-     "pick": "2",
-     "type": "fav",
-     "label": "Albanie gagne",
-     "market_id": 35992850,
-     "pos": 3,
-     "cote": 1.75,
-     "player": null,
-     "team": null,
-     "line": null,
-     "value_pct": null,
-     "why": "Albanie leader, 20 tirs à l'aller, avis 1-2"
-    },
     {
      "event_id": 1318203,
      "match": "Belgique-Italie",
@@ -107,7 +43,7 @@
      "label": "Italie gagne",
      "market_id": 35992843,
      "pos": 3,
-     "cote": 2.45,
+     "cote": 2.55,
      "player": null,
      "team": null,
      "line": null,
@@ -142,19 +78,19 @@
      "start": "2026-11-15T19:45:00Z",
      "start_ts": 1794771900,
      "fin_ts": 1794771600,
-     "mk": "1N2",
-     "market": "1/N/2",
-     "pick": "1",
-     "type": "fav",
-     "label": "Espagne gagne",
-     "market_id": 35992989,
+     "mk": "BTTS",
+     "market": "Les 2 équipes marquent",
+     "pick": "Oui",
+     "type": "btts",
+     "label": "Les 2 équipes marquent",
+     "market_id": 36516388,
      "pos": 1,
-     "cote": 1.56,
+     "cote": 1.4,
      "player": null,
      "team": null,
      "line": null,
      "value_pct": null,
-     "why": "Espagne leader à Madrid, victorieuse à Londres, avis 2-1"
+     "why": "Leader contre 2e, match serré à l'aller, avis 2-1"
     },
     {
      "event_id": 1318214,
@@ -170,7 +106,7 @@
      "label": "France +2,5 buts",
      "market_id": 36516267,
      "pos": 1,
-     "cote": 1.55,
+     "cote": 1.5,
      "player": null,
      "team": "France",
      "line": "2,5",
@@ -178,15 +114,15 @@
      "why": "France qualifiée en cas de succès, Turquie dernière, avis 4-1"
     }
    ],
-   "cote": 77.13,
+   "cote": 12.85,
    "mise": 3.0,
-   "gain": 249.67,
-   "boost": 0.08,
-   "trj": 0.309,
-   "deadline": "2026-11-15T13:55:00Z",
-   "deadline_ts": 1794750900,
-   "link": "https://33xb.adj.st/betslip?bet_type=1&market_id=36568101,1&market_id=36289252,3&market_id=35992850,3&market_id=35992843,3&market_id=36520429,1&market_id=35992989,1&market_id=36516267,1&adj_t=1toqzbnl&pr=0",
-   "key": "35992843:3|35992850:3|35992989:1|36289252:3|36516267:1|36520429:1|36568101:1",
+   "gain": 39.27,
+   "boost": 0.02,
+   "trj": 0.487,
+   "deadline": "2026-11-15T19:40:00Z",
+   "deadline_ts": 1794771600,
+   "link": "https://33xb.adj.st/betslip?bet_type=1&market_id=35992843,3&market_id=36520429,1&market_id=36516388,1&market_id=36516267,1&adj_t=1toqzbnl&pr=0",
+   "key": "35992843:3|36516267:1|36516388:1|36520429:1",
    "checks": {
     "one_per_match": true,
     "no_hedge": true,
@@ -197,7 +133,9 @@
  "check": {
   "ok": true,
   "errors": [],
-  "warnings": [],
-  "checked_at": "2026-11-15T11:28:23Z"
+  "warnings": [
+   "[Quatre du dimanche soir] : cote 12.9 hors fourchette 67–667"
+  ],
+  "checked_at": "2026-11-15T16:28:04Z"
  }
 }
