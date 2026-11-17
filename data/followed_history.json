@@ -151,5 +151,23 @@
   "comp": "L1 McDonald's",
   "start_ts": 1795376700,
   "fin_ts": 1795376400
+ },
+ "1303242": {
+  "match": "Bodø/Glimt-Lask Linz",
+  "home": "Bodø/Glimt",
+  "away": "Lask Linz",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795542300,
+  "fin_ts": 1795542000
+ },
+ "1303241": {
+  "match": "Galatasaray-Aston Villa",
+  "home": "Galatasaray",
+  "away": "Aston Villa",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795542300,
+  "fin_ts": 1795542000
  }
 }
