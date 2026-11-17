@@ -61,7 +61,7 @@
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-17T17:17:59Z",
+ "updated_at": "2026-11-17T17:26:18Z",
  "picks_count": 0,
  "value_rows": 6,
  "last_snapshot_at": "2026-11-08T19:35:04Z",
@@ -73,5 +73,7 @@
  "dispo_status": "ok",
  "dispo_matches": 0,
  "dispo_requests_today": 0,
- "dispo_error": null
+ "dispo_error": null,
+ "scores_last_run": "2026-11-17T17:26:18Z",
+ "scores_pending": 0
 }
