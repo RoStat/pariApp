@@ -1,13 +1,4 @@
 {
- "1318920": {
-  "match": "Paris SG-Troyes",
-  "home": "Paris SG",
-  "away": "Troyes",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1794081900,
-  "fin_ts": 1794081600
- },
  "1318921": {
   "match": "Rennes-Lille",
   "home": "Rennes",
@@ -160,5 +151,68 @@
   "comp": "ChampionsLeague",
   "start_ts": 1795542300,
   "fin_ts": 1795542000
+ },
+ "1303258": {
+  "match": "Arsenal-Dortmund",
+  "home": "Arsenal",
+  "away": "Dortmund",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795550400,
+  "fin_ts": 1795550100
+ },
+ "1303259": {
+  "match": "Como 1907-AEK Athènes",
+  "home": "Como 1907",
+  "away": "AEK Athènes",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795550400,
+  "fin_ts": 1795550100
+ },
+ "1303253": {
+  "match": "Feyenoord-FC Porto",
+  "home": "Feyenoord",
+  "away": "FC Porto",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795550400,
+  "fin_ts": 1795550100
+ },
+ "1303254": {
+  "match": "Man. City-Naples",
+  "home": "Man. City",
+  "away": "Naples",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795550400,
+  "fin_ts": 1795550100
+ },
+ "1303255": {
+  "match": "RB Leipzig-Lens",
+  "home": "RB Leipzig",
+  "away": "Lens",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795550400,
+  "fin_ts": 1795550100
+ },
+ "1303257": {
+  "match": "Real Madrid-PSV Eindhoven",
+  "home": "Real Madrid",
+  "away": "PSV Eindhoven",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795550400,
+  "fin_ts": 1795550100
+ },
+ "1303256": {
+  "match": "Slo.Bratislava-Betis Séville",
+  "home": "Slo.Bratislava",
+  "away": "Betis Séville",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795550400,
+  "fin_ts": 1795550100
  }
 }
