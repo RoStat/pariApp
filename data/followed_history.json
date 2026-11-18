@@ -169,5 +169,23 @@
   "comp": "ChampionsLeague",
   "start_ts": 1795550400,
   "fin_ts": 1795550100
+ },
+ "1303566": {
+  "match": "Sabah FK-FC Barcelone",
+  "home": "Sabah FK",
+  "away": "FC Barcelone",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795628700,
+  "fin_ts": 1795628400
+ },
+ "1303565": {
+  "match": "Slavia Prague-Villarreal",
+  "home": "Slavia Prague",
+  "away": "Villarreal",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795628700,
+  "fin_ts": 1795628400
  }
 }
