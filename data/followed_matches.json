@@ -198,5 +198,75 @@
   "comp": "ChampionsLeague",
   "start_ts": 1795628700,
   "fin_ts": 1795628400
+ },
+ {
+  "event_id": 1303605,
+  "match": "Atl. Madrid-Viking FK",
+  "home": "Atl. Madrid",
+  "away": "Viking FK",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795636800,
+  "fin_ts": 1795636500
+ },
+ {
+  "event_id": 1303601,
+  "match": "Club Bruges-Liverpool",
+  "home": "Club Bruges",
+  "away": "Liverpool",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795636800,
+  "fin_ts": 1795636500
+ },
+ {
+  "event_id": 1303600,
+  "match": "Inter Milan-Stuttgart",
+  "home": "Inter Milan",
+  "away": "Stuttgart",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795636800,
+  "fin_ts": 1795636500
+ },
+ {
+  "event_id": 1303602,
+  "match": "Lille-Bayern Munich",
+  "home": "Lille",
+  "away": "Bayern Munich",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795636800,
+  "fin_ts": 1795636500
+ },
+ {
+  "event_id": 1303604,
+  "match": "Paris SG-AS Rome",
+  "home": "Paris SG",
+  "away": "AS Rome",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795636800,
+  "fin_ts": 1795636500
+ },
+ {
+  "event_id": 1303599,
+  "match": "Shakht.Donetsk-Fenerbahce",
+  "home": "Shakht.Donetsk",
+  "away": "Fenerbahce",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795636800,
+  "fin_ts": 1795636500
+ },
+ {
+  "event_id": 1303603,
+  "match": "Sporting-Man. United",
+  "home": "Sporting",
+  "away": "Man. United",
+  "sport_key": "soccer_uefa_champs_league",
+  "comp": "ChampionsLeague",
+  "start_ts": 1795636800,
+  "fin_ts": 1795636500
  }
 ]

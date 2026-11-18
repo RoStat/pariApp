@@ -1,8 +1,8 @@
 {
- "offer_created_at": "2026-11-18T19:50:24Z",
- "fetched_at": "2026-11-18T19:55:11Z",
- "events_count": 68,
- "followed_count": 20,
+ "offer_created_at": "2026-11-18T20:20:30Z",
+ "fetched_at": "2026-11-18T20:25:11Z",
+ "events_count": 75,
+ "followed_count": 27,
  "next_followed_kickoffs": [
   {
    "match": "Troyes-Le Havre",
@@ -79,7 +79,7 @@
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-18T19:55:12Z",
+ "updated_at": "2026-11-18T20:25:12Z",
  "picks_count": 0,
  "value_rows": 6,
  "last_snapshot_at": "2026-11-08T19:35:04Z",
