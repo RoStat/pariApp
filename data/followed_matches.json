@@ -268,5 +268,55 @@
   "comp": "ChampionsLeague",
   "start_ts": 1795636800,
   "fin_ts": 1795636500
+ },
+ {
+  "event_id": 1303930,
+  "match": "Celta Vigo-Bournemouth",
+  "home": "Celta Vigo",
+  "away": "Bournemouth",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795715100,
+  "fin_ts": 1795714800
+ },
+ {
+  "event_id": 1303932,
+  "match": "Hearts-Monaco",
+  "home": "Hearts",
+  "away": "Monaco",
+  "sport_key": "soccer_uefa_europa_conference_league",
+  "comp": "Europa Conf.",
+  "start_ts": 1795715100,
+  "fin_ts": 1795714800
+ },
+ {
+  "event_id": 1303936,
+  "match": "Marseille-Levski Sofia",
+  "home": "Marseille",
+  "away": "Levski Sofia",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795715100,
+  "fin_ts": 1795714800
+ },
+ {
+  "event_id": 1303941,
+  "match": "Olympiakos-Milan AC",
+  "home": "Olympiakos",
+  "away": "Milan AC",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795715100,
+  "fin_ts": 1795714800
+ },
+ {
+  "event_id": 1303937,
+  "match": "Viktoria Plzen-Benfica",
+  "home": "Viktoria Plzen",
+  "away": "Benfica",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795715100,
+  "fin_ts": 1795714800
  }
 ]
