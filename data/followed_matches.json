@@ -318,5 +318,45 @@
   "comp": "Europa League",
   "start_ts": 1795715100,
   "fin_ts": 1795714800
+ },
+ {
+  "event_id": 1303973,
+  "match": "Crystal Palace-Real Sociedad",
+  "home": "Crystal Palace",
+  "away": "Real Sociedad",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795723200,
+  "fin_ts": 1795722900
+ },
+ {
+  "event_id": 1303969,
+  "match": "Juventus Turin-Omonia Nicosie",
+  "home": "Juventus Turin",
+  "away": "Omonia Nicosie",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795723200,
+  "fin_ts": 1795722900
+ },
+ {
+  "event_id": 1303978,
+  "match": "Lyon-Lillestrøm",
+  "home": "Lyon",
+  "away": "Lillestrøm",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795723200,
+  "fin_ts": 1795722900
+ },
+ {
+  "event_id": 1303962,
+  "match": "NEC Nimègue-Rennes",
+  "home": "NEC Nimègue",
+  "away": "Rennes",
+  "sport_key": "soccer_uefa_europa_league",
+  "comp": "Europa League",
+  "start_ts": 1795723200,
+  "fin_ts": 1795722900
  }
 ]
