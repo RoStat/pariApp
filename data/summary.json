@@ -1,15 +1,9 @@
 {
- "offer_created_at": "2026-11-21T16:03:09Z",
- "fetched_at": "2026-11-21T16:08:06Z",
- "events_count": 60,
- "followed_count": 35,
+ "offer_created_at": "2026-11-21T16:10:40Z",
+ "fetched_at": "2026-11-21T16:18:06Z",
+ "events_count": 59,
+ "followed_count": 34,
  "next_followed_kickoffs": [
-  {
-   "match": "Nice-Paris SG",
-   "comp": "L1 McDonald's",
-   "start": "2026-11-21T16:15:00Z",
-   "fin": "2026-11-21T16:10:00Z"
-  },
   {
    "match": "Lens-Toulouse",
    "comp": "L1 McDonald's",
@@ -75,11 +69,17 @@
    "comp": "ChampionsLeague",
    "start": "2026-11-24T20:00:00Z",
    "fin": "2026-11-24T19:55:00Z"
+  },
+  {
+   "match": "Feyenoord-FC Porto",
+   "comp": "ChampionsLeague",
+   "start": "2026-11-24T20:00:00Z",
+   "fin": "2026-11-24T19:55:00Z"
   }
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-21T16:08:07Z",
+ "updated_at": "2026-11-21T16:18:07Z",
  "picks_count": 0,
  "value_rows": 50,
  "last_snapshot_at": "2026-11-21T16:08:07Z",
