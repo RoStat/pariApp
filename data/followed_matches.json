@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1320979,
-  "match": "Marseille-Le Mans",
-  "home": "Marseille",
-  "away": "Le Mans",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1795376700,
-  "fin_ts": 1795376400
- },
- {
   "event_id": 1303242,
   "match": "Bodø/Glimt-Lask Linz",
   "home": "Bodø/Glimt",
