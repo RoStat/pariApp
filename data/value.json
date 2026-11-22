@@ -1,7 +1,26 @@
 {
- "updated_at": "2026-11-22T18:15:01Z",
+ "updated_at": "2026-11-22T18:25:01Z",
  "min_value_pct": 3.0,
  "rows": [
+  {
+   "event_id": 1320979,
+   "match": "Marseille-Le Mans",
+   "comp": "L1 McDonald's",
+   "start": "2026-11-22T19:45:00Z",
+   "fin_ts": 1795376400,
+   "market": "Double chance",
+   "pick": "1/N",
+   "cote_fdj": 1.09,
+   "p_juste": 0.8682,
+   "cote_juste": 1.15,
+   "value_pct": -5.36,
+   "mise_pct_bankroll": 0.0,
+   "market_id": 36682401,
+   "pos": 1,
+   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36682401,1&adj_t=1toqzbnl&pr=0",
+   "reference": "pinnacle",
+   "snapshot": "pre"
+  },
   {
    "event_id": 1320979,
    "match": "Marseille-Le Mans",
@@ -11,34 +30,15 @@
    "market": "1/N/2",
    "pick": "N",
    "cote_fdj": 5.0,
-   "p_juste": 0.1913,
-   "cote_juste": 5.23,
-   "value_pct": -4.36,
+   "p_juste": 0.1881,
+   "cote_juste": 5.32,
+   "value_pct": -5.94,
    "mise_pct_bankroll": 0.0,
    "market_id": 36290283,
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36290283,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
-  },
-  {
-   "event_id": 1320979,
-   "match": "Marseille-Le Mans",
-   "comp": "L1 McDonald's",
-   "start": "2026-11-22T19:45:00Z",
-   "fin_ts": 1795376400,
-   "market": "Double chance",
-   "pick": "1/N",
-   "cote_fdj": 1.1,
-   "p_juste": 0.8601,
-   "cote_juste": 1.16,
-   "value_pct": -5.39,
-   "mise_pct_bankroll": 0.0,
-   "market_id": 36682401,
-   "pos": 1,
-   "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36682401,1&adj_t=1toqzbnl&pr=0",
-   "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1320979,
@@ -49,15 +49,15 @@
    "market": "Double chance",
    "pick": "1/2",
    "cote_fdj": 1.14,
-   "p_juste": 0.8087,
-   "cote_juste": 1.24,
-   "value_pct": -7.81,
+   "p_juste": 0.8119,
+   "cote_juste": 1.23,
+   "value_pct": -7.44,
    "mise_pct_bankroll": 0.0,
    "market_id": 36682401,
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36682401,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1320979,
@@ -68,15 +68,15 @@
    "market": "1/N/2",
    "pick": "1",
    "cote_fdj": 1.36,
-   "p_juste": 0.6688,
-   "cote_juste": 1.5,
-   "value_pct": -9.04,
+   "p_juste": 0.6801,
+   "cote_juste": 1.47,
+   "value_pct": -7.51,
    "mise_pct_bankroll": 0.0,
    "market_id": 36290283,
    "pos": 1,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36290283,1&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1320979,
@@ -87,15 +87,15 @@
    "market": "1/N/2",
    "pick": "2",
    "cote_fdj": 6.2,
-   "p_juste": 0.1399,
-   "cote_juste": 7.15,
-   "value_pct": -13.24,
+   "p_juste": 0.1318,
+   "cote_juste": 7.59,
+   "value_pct": -18.3,
    "mise_pct_bankroll": 0.0,
    "market_id": 36290283,
    "pos": 3,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36290283,3&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   },
   {
    "event_id": 1320979,
@@ -105,16 +105,16 @@
    "fin_ts": 1795376400,
    "market": "Double chance",
    "pick": "N/2",
-   "cote_fdj": 2.3,
-   "p_juste": 0.3312,
-   "cote_juste": 3.02,
-   "value_pct": -23.82,
+   "cote_fdj": 2.35,
+   "p_juste": 0.3199,
+   "cote_juste": 3.13,
+   "value_pct": -24.82,
    "mise_pct_bankroll": 0.0,
    "market_id": 36682401,
    "pos": 2,
    "lien": "https://33xb.adj.st/betslip?bet_type=1&market_id=36682401,2&adj_t=1toqzbnl&pr=0",
    "reference": "pinnacle",
-   "snapshot": "close"
+   "snapshot": "pre"
   }
  ],
  "picks": []
