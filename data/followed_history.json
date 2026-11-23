@@ -424,8 +424,8 @@
  },
  "1303942": {
   "match": "Saint-Gilloise-Lech Poznan",
-  "home": "Saint",
-  "away": "Gilloise-Lech Poznan",
+  "home": "Saint-Gilloise",
+  "away": "Lech Poznan",
   "sport_key": "soccer_uefa_europa_league",
   "comp": "Europa League",
   "start_ts": 1795715100,
@@ -565,5 +565,86 @@
   "comp": "Europa League",
   "start_ts": 1795723200,
   "fin_ts": 1795722900
+ },
+ "1322937": {
+  "match": "Brest-Paris FC",
+  "home": "Brest",
+  "away": "Paris FC",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795808700,
+  "fin_ts": 1795808400
+ },
+ "1322942": {
+  "match": "Angers-Lens",
+  "home": "Angers",
+  "away": "Lens",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795882500,
+  "fin_ts": 1795882200
+ },
+ "1322939": {
+  "match": "Le Havre-Strasbourg",
+  "home": "Le Havre",
+  "away": "Strasbourg",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795895100,
+  "fin_ts": 1795894800
+ },
+ "1322934": {
+  "match": "Le Mans-Lille",
+  "home": "Le Mans",
+  "away": "Lille",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795895100,
+  "fin_ts": 1795894800
+ },
+ "1322935": {
+  "match": "Nice-Troyes",
+  "home": "Nice",
+  "away": "Troyes",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795895100,
+  "fin_ts": 1795894800
+ },
+ "1322936": {
+  "match": "Paris SG-Lorient",
+  "home": "Paris SG",
+  "away": "Lorient",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795895100,
+  "fin_ts": 1795894800
+ },
+ "1322938": {
+  "match": "Auxerre-Marseille",
+  "home": "Auxerre",
+  "away": "Marseille",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795960800,
+  "fin_ts": 1795960500
+ },
+ "1322940": {
+  "match": "Toulouse-Rennes",
+  "home": "Toulouse",
+  "away": "Rennes",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795968900,
+  "fin_ts": 1795968600
+ },
+ "1322941": {
+  "match": "Lyon-Monaco",
+  "home": "Lyon",
+  "away": "Monaco",
+  "sport_key": "soccer_france_ligue_one",
+  "comp": "L1 McDonald's",
+  "start_ts": 1795981500,
+  "fin_ts": 1795981200
  }
 }
