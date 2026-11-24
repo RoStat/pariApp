@@ -1,25 +1,5 @@
 [
  {
-  "event_id": 1303242,
-  "match": "Bodø/Glimt-Lask Linz",
-  "home": "Bodø/Glimt",
-  "away": "Lask Linz",
-  "sport_key": "soccer_uefa_champs_league",
-  "comp": "ChampionsLeague",
-  "start_ts": 1795542300,
-  "fin_ts": 1795542000
- },
- {
-  "event_id": 1303241,
-  "match": "Galatasaray-Aston Villa",
-  "home": "Galatasaray",
-  "away": "Aston Villa",
-  "sport_key": "soccer_uefa_champs_league",
-  "comp": "ChampionsLeague",
-  "start_ts": 1795542300,
-  "fin_ts": 1795542000
- },
- {
   "event_id": 1303258,
   "match": "Arsenal-Dortmund",
   "home": "Arsenal",
