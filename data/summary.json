@@ -1,51 +1,9 @@
 {
- "offer_created_at": "2026-11-24T19:45:31Z",
- "fetched_at": "2026-11-24T19:50:01Z",
- "events_count": 100,
- "followed_count": 61,
+ "offer_created_at": "2026-11-24T19:55:36Z",
+ "fetched_at": "2026-11-24T20:00:01Z",
+ "events_count": 93,
+ "followed_count": 54,
  "next_followed_kickoffs": [
-  {
-   "match": "Arsenal-Dortmund",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-24T20:00:00Z",
-   "fin": "2026-11-24T19:55:00Z"
-  },
-  {
-   "match": "Como 1907-AEK Athènes",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-24T20:00:00Z",
-   "fin": "2026-11-24T19:55:00Z"
-  },
-  {
-   "match": "Feyenoord-FC Porto",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-24T20:00:00Z",
-   "fin": "2026-11-24T19:55:00Z"
-  },
-  {
-   "match": "Man. City-Naples",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-24T20:00:00Z",
-   "fin": "2026-11-24T19:55:00Z"
-  },
-  {
-   "match": "RB Leipzig-Lens",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-24T20:00:00Z",
-   "fin": "2026-11-24T19:55:00Z"
-  },
-  {
-   "match": "Real Madrid-PSV Eindhoven",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-24T20:00:00Z",
-   "fin": "2026-11-24T19:55:00Z"
-  },
-  {
-   "match": "Slo.Bratislava-Betis Séville",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-24T20:00:00Z",
-   "fin": "2026-11-24T19:55:00Z"
-  },
   {
    "match": "Sabah FK-FC Barcelone",
    "comp": "ChampionsLeague",
@@ -75,11 +33,53 @@
    "comp": "ChampionsLeague",
    "start": "2026-11-25T20:00:00Z",
    "fin": "2026-11-25T19:55:00Z"
+  },
+  {
+   "match": "Lille-Bayern Munich",
+   "comp": "ChampionsLeague",
+   "start": "2026-11-25T20:00:00Z",
+   "fin": "2026-11-25T19:55:00Z"
+  },
+  {
+   "match": "Paris SG-AS Rome",
+   "comp": "ChampionsLeague",
+   "start": "2026-11-25T20:00:00Z",
+   "fin": "2026-11-25T19:55:00Z"
+  },
+  {
+   "match": "Shakht.Donetsk-Fenerbahce",
+   "comp": "ChampionsLeague",
+   "start": "2026-11-25T20:00:00Z",
+   "fin": "2026-11-25T19:55:00Z"
+  },
+  {
+   "match": "Sporting-Man. United",
+   "comp": "ChampionsLeague",
+   "start": "2026-11-25T20:00:00Z",
+   "fin": "2026-11-25T19:55:00Z"
+  },
+  {
+   "match": "Kairat Almaty-Mjällby",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T15:30:00Z",
+   "fin": "2026-11-26T15:25:00Z"
+  },
+  {
+   "match": "Ajax-FC Thun",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Besiktas-Hap.Beer Sheva",
+   "comp": "Europa League",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
   }
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-24T19:50:06Z",
+ "updated_at": "2026-11-24T20:00:04Z",
  "picks_count": 0,
  "value_rows": 90,
  "last_snapshot_at": "2026-11-24T19:50:05Z",
