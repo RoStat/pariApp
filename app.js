@@ -104,15 +104,14 @@ function prepare() {
     if (h && n && a) {
       const fav = h.cote <= a.cote ? h : a, dog = fav === h ? a : h;
       if (fav.cote >= 1.12 && fav.cote <= 1.8) add(e, "fav", (fav === h ? home : away) + " gagne", m["1N2"], fav);
-      if (dog.cote >= 2.4 && dog.cote <= 4.6) add(e, "outsider", (dog === h ? home : away) + " gagne", m["1N2"], dog);
-      if (n.cote >= 3 && n.cote <= 4.3) add(e, "nul", "Match nul", m["1N2"], n);
+      if (dog.cote >= 2.0 && dog.cote <= MAX_LEG) add(e, "outsider", (dog === h ? home : away) + " gagne", m["1N2"], dog);
+      // Règle de risque (25/11/2026) : plus de « Match nul » ni de doublé joueur, aucune jambe au-dessus de MAX_LEG.
     }
     if (m.DC) m.DC.outcomes.forEach(o => { if (o.cote >= 1.15 && o.cote <= 1.65) add(e, "dc", { "1/N": home + " ou nul", "N/2": away + " ou nul", "1/2": "Pas de nul" }[o.lib] || o.lib, m.DC, o); });
     if (m.OU25) m.OU25.outcomes.forEach(o => { const plus = /^Plus/.test(o.lib); if (o.cote <= 1.75) add(e, "total", plus ? "+2,5 buts dans le match" : "−2,5 buts dans le match", m.OU25, o); });
     if (m.BTTS) m.BTTS.outcomes.forEach(o => { if (o.cote <= 1.8) add(e, "btts", o.lib === "Oui" ? "Les 2 équipes marquent" : "Une équipe ne marque pas", m.BTTS, o); });
-    (m.team_totals || []).forEach(tt => { const p = tt.outcomes.find(o => /^Plus/.test(o.lib)); if (p && p.cote >= 1.12 && p.cote <= 2.6) add(e, "buts_eq", tt.team + " +" + tt.line + " buts", { market_id: tt.market_id }, p); });
+    (m.team_totals || []).forEach(tt => { const p = tt.outcomes.find(o => /^Plus/.test(o.lib)); if (p && p.cote >= 1.12 && p.cote <= MAX_LEG) add(e, "buts_eq", tt.team + " +" + tt.line + " buts", { market_id: tt.market_id }, p); });
     if (m.buteur) m.buteur.outcomes.slice().sort((x, y) => x.cote - y.cote).slice(0, 2).filter(o => o.cote <= 2.3).forEach(o => add(e, "buteur", o.lib + " buteur", m.buteur, o, o.lib));
-    if (m.double) m.double.outcomes.slice().sort((x, y) => x.cote - y.cote).slice(0, 2).filter(o => o.cote <= 4.6).forEach(o => add(e, "double", o.lib + " doublé", m.double, o, o.lib));
     if (m.decisif) m.decisif.outcomes.slice().sort((x, y) => x.cote - y.cote).slice(0, 2).filter(o => o.cote <= 1.85).forEach(o => add(e, "decisif", o.lib + " décisif (but ou passe)", m.decisif, o, o.lib));
     if (m.double_match) { const o = m.double_match.outcomes.find(o => o.lib === "Oui"); if (o && o.cote <= 1.85) add(e, "double_match", "Un doublé dans le match", m.double_match, o); }
   });
@@ -134,11 +133,12 @@ const selectedEvents = () => eventsInScope().filter(e => S.compsOn.has(e.comp_id
 // ---------- générateur ----------
 // w = poids de tirage par type ; maxLeg = cote max d'une jambe ; minTypes = diversité minimale ; legs = [min, max] ;
 // coteRange (Discipliné) remplace la fourchette de gains ; only = types autorisés.
+const MAX_LEG = 2.5;  // cote maximale d'une jambe (même valeur que config.json > tickets > cote_max_jambe)
 const STYLES = {
-  melange:    { w: { fav: 3, outsider: 1.2, nul: 1.2, dc: 0.6, buts_eq: 2, total: 1, buteur: 2, double: 1, decisif: 2, double_match: 1, btts: 1 }, maxLeg: 4.6, minTypes: 4, legs: [4, 10] },
+  melange:    { w: { fav: 3, outsider: 0.8, dc: 1, buts_eq: 2, total: 1, buteur: 2, decisif: 2, double_match: 1, btts: 1 }, maxLeg: MAX_LEG, minTypes: 4, legs: [4, 10] },
   safe:       { w: { fav: 4, dc: 2, buts_eq: 3, total: 2, decisif: 3, buteur: 1, btts: 1, double_match: 1 }, maxLeg: 1.8, minTypes: 3, legs: [6, 12] },
-  risque:     { w: { outsider: 3, nul: 3, double: 3, buteur: 2, buts_eq: 1, fav: 1, total: 0.5 }, maxLeg: 4.6, minTypes: 3, legs: [3, 7] },
-  discipline: { w: { fav: 3, dc: 3, total: 2, btts: 2, nul: 0.4, outsider: 0.4 }, maxLeg: 3.0, minTypes: 1, legs: [2, 3], coteRange: [3, 8] }
+  risque:     { w: { outsider: 3, buteur: 2, buts_eq: 2, fav: 1, total: 0.5, btts: 0.5 }, maxLeg: MAX_LEG, minTypes: 3, legs: [3, 7] },
+  discipline: { w: { fav: 3, dc: 3, total: 2, btts: 2, outsider: 0.4 }, maxLeg: MAX_LEG, minTypes: 1, legs: [2, 3], coteRange: [3, 8] }
 };
 const STYLE_LABELS = { melange: "Mélange", safe: "Safe", risque: "Risqué", discipline: "Discipliné" };
 // Couvertures : deux tickets qui portent des sélections incompatibles sur le même match (ex. « Lyon gagne » et « Match nul »).
@@ -383,7 +383,7 @@ function render(step, msg) {
       <p class="mut" id="bk"></p></div>`));
     const help = { melange: "4 à 10 sélections, au moins 4 types de paris différents, cote cible = gain visé / mise.",
       safe: "6 à 12 sélections à cote ≤ 1,80 (favoris, double chance, buts). Le TRJ s'effondre quand même avec le nombre de jambes.",
-      risque: "3 à 7 sélections dont outsiders, nuls et doublés.",
+      risque: "3 à 7 sélections plus payées (outsiders, buteurs, buts équipe), jamais au-dessus de 2,50 par jambe ; ni match nul ni doublé joueur.",
       discipline: "2 à 3 sélections, marchés 1N2 / double chance / +−2,5 / les 2 marquent uniquement, cote totale 3 à 8. Les gains mini/maxi ne s'appliquent pas." };
     const upd = () => {
       p.nb = Math.min(10, +$("#nb").value || 5); p.mise = +$("#mise").value || 3; p.gmin = +$("#gmin").value || 200; p.gmax = Math.max(p.gmin + 1, +$("#gmax").value || 2000); p.budgetHebdo = +$("#budget").value || 0; savePrefs();
