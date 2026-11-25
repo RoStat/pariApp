@@ -1,21 +1,9 @@
 {
- "offer_created_at": "2026-11-25T17:30:05Z",
- "fetched_at": "2026-11-25T17:35:02Z",
- "events_count": 93,
- "followed_count": 54,
+ "offer_created_at": "2026-11-25T17:42:45Z",
+ "fetched_at": "2026-11-25T17:45:02Z",
+ "events_count": 91,
+ "followed_count": 52,
  "next_followed_kickoffs": [
-  {
-   "match": "Sabah FK-FC Barcelone",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T17:45:00Z",
-   "fin": "2026-11-25T17:40:00Z"
-  },
-  {
-   "match": "Slavia Prague-Villarreal",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T17:45:00Z",
-   "fin": "2026-11-25T17:40:00Z"
-  },
   {
    "match": "Atl. Madrid-Viking FK",
    "comp": "ChampionsLeague",
@@ -75,11 +63,23 @@
    "comp": "Europa League",
    "start": "2026-11-26T17:45:00Z",
    "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Brighton Hove-Uni.Craiova",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Celta Vigo-Bournemouth",
+   "comp": "Europa League",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
   }
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-25T17:35:08Z",
+ "updated_at": "2026-11-25T17:45:06Z",
  "picks_count": 0,
  "value_rows": 48,
  "last_snapshot_at": "2026-11-25T17:35:07Z",
