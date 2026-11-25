@@ -8,19 +8,18 @@
   "plan_error": "API-Football : plan: Free plans do not have access to this season, try from 2022 to 2024. \u2014 source indisponible : l'agent compositeur se rabat sur l'avis Pronosoft et une recherche web"
  },
  "usage": {
-  "remaining": 446,
-  "used": 54,
+  "remaining": 444,
+  "used": 56,
   "last": 2
  },
  "last_error": null,
  "done": {
-  "soccer_france_ligue_one|1795364100|pre": "2026-11-22T15:15:22Z",
-  "soccer_france_ligue_one|1795364100|close": "2026-11-22T16:05:19Z",
   "soccer_france_ligue_one|1795376700|pre": "2026-11-22T18:25:01Z",
   "soccer_france_ligue_one|1795376700|close": "2026-11-22T19:35:01Z",
   "soccer_uefa_champs_league|1795542300|pre": "2026-11-24T16:25:07Z",
   "soccer_uefa_champs_league|1795542300|close": "2026-11-24T17:35:07Z",
   "soccer_uefa_champs_league|1795550400|pre": "2026-11-24T18:40:07Z",
-  "soccer_uefa_champs_league|1795550400|close": "2026-11-24T19:50:05Z"
+  "soccer_uefa_champs_league|1795550400|close": "2026-11-24T19:50:05Z",
+  "soccer_uefa_champs_league|1795628700|pre": "2026-11-25T16:25:12Z"
  }
 }
