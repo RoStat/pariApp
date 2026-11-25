@@ -11,7 +11,7 @@
  "notes": [
   "Périmètre : 10 matchs de Ligue des champions (suivie), 2 à 17h45Z et 8 à 20h00Z. Périmètre mince : 1 ticket long + 1 discipliné, 1 seul match commun (Sporting-Man. United, même choix).",
   "Relevé Pinnacle du jour (pre 16h25Z) : toutes les victoires de favoris sont sous le seuil de -8 % (PSG -13 %, Liverpool -13 %, Bayern -14 %, Inter -12 %, Atlético -11 %). À noter : le nul PSG-Rome (4,85) est à -0,4 % et Rome à -3 %, le marché de référence croit donc moins au PSG que FDJ. Les tickets évitent le 1N2 et passent par les buts par équipe et 'les 2 équipes marquent', marchés sans référence jugés sur l'avis Pronosoft.",
-  "'Six de Ligue des champions' est sous la fourchette de gains (cote ~27) : l'atteindre aurait demandé d'empiler des jambes à 3 buts ou de revenir au 1N2 mal payé. Inter-Stuttgart non retenu (Inter +1,5 à 1,22 n'apporte presque rien).",
+  "'Six de Ligue des champions' est sous la fourchette de gains (cote ~22) : l'atteindre aurait demandé d'empiler des jambes à 3 buts ou de revenir au 1N2 mal payé. Inter-Stuttgart non retenu (Inter +1,5 à 1,22 n'apporte presque rien).",
   "dispo.json en erreur, aucune compo datée du jour vérifiée → aucun pari joueur (Greenwood cité par l'avis, non vérifié). Tickets du 24/11 expirés, non conservés."
  ],
  "exclusions": [
@@ -269,6 +269,6 @@
   "warnings": [
    "[Six de Ligue des champions] : cote 22.1 hors fourchette 67–667"
   ],
-  "checked_at": "2026-11-25T16:28:13Z"
+  "checked_at": "2026-11-25T16:28:24Z"
  }
 }
