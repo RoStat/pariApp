@@ -1,51 +1,9 @@
 {
- "offer_created_at": "2026-11-25T19:44:11Z",
- "fetched_at": "2026-11-25T19:50:39Z",
- "events_count": 91,
- "followed_count": 52,
+ "offer_created_at": "2026-11-25T19:54:21Z",
+ "fetched_at": "2026-11-25T20:00:39Z",
+ "events_count": 84,
+ "followed_count": 45,
  "next_followed_kickoffs": [
-  {
-   "match": "Atl. Madrid-Viking FK",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T20:00:00Z",
-   "fin": "2026-11-25T19:55:00Z"
-  },
-  {
-   "match": "Club Bruges-Liverpool",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T20:00:00Z",
-   "fin": "2026-11-25T19:55:00Z"
-  },
-  {
-   "match": "Inter Milan-Stuttgart",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T20:00:00Z",
-   "fin": "2026-11-25T19:55:00Z"
-  },
-  {
-   "match": "Lille-Bayern Munich",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T20:00:00Z",
-   "fin": "2026-11-25T19:55:00Z"
-  },
-  {
-   "match": "Paris SG-AS Rome",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T20:00:00Z",
-   "fin": "2026-11-25T19:55:00Z"
-  },
-  {
-   "match": "Shakht.Donetsk-Fenerbahce",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T20:00:00Z",
-   "fin": "2026-11-25T19:55:00Z"
-  },
-  {
-   "match": "Sporting-Man. United",
-   "comp": "ChampionsLeague",
-   "start": "2026-11-25T20:00:00Z",
-   "fin": "2026-11-25T19:55:00Z"
-  },
   {
    "match": "Kairat Almaty-Mjällby",
    "comp": "Europa Conf.",
@@ -75,11 +33,53 @@
    "comp": "Europa League",
    "start": "2026-11-26T17:45:00Z",
    "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Dinamo Zagreb-Leverkusen",
+   "comp": "Europa League",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "FK Jablonec-FC Lugano",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Hearts-Monaco",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Iberia 1999-Getafe",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "KS Egnatia-Lincoln FC",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Kauno Zalgiris-Riga FC",
+   "comp": "Europa Conf.",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
+  },
+  {
+   "match": "Marseille-Levski Sofia",
+   "comp": "Europa League",
+   "start": "2026-11-26T17:45:00Z",
+   "fin": "2026-11-26T17:40:00Z"
   }
  ],
  "fetch_error": null,
  "last_error": null,
- "updated_at": "2026-11-25T19:50:43Z",
+ "updated_at": "2026-11-25T20:00:42Z",
  "picks_count": 0,
  "value_rows": 36,
  "last_snapshot_at": "2026-11-25T19:50:42Z",
