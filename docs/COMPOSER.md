@@ -11,7 +11,10 @@ python3 -m json.tool data/summary.json
 Lire dans l'ordre : `data/summary.json` (état, erreurs, `credits_remaining`), `data/offre.json` (matchs, marchés, `avis` Pronosoft,
 `boost`), `data/value.json` (`rows` : valeur FDJ vs Pinnacle en %, `picks` ≥ 3 %), `data/dispo.json` (absents, compos ; `status`),
 `config.json > tickets` (paramètres par défaut : nombre, mise, fourchette de gains, marge de scan).
-Si `summary.last_error` ou `offre` de plus de 3 h : le dire dans `notes`, composer quand même si l'offre est exploitable.
+**Offre de plus de 2 h** (`summary.fetched_at`) : GitHub lance le relais en retard certains jours. Déclencher le workflow
+`pariapp.yml` (GitHub Actions, *workflow_dispatch* sur `main`), attendre le commit « relais … » (1 à 3 min), refaire `git pull`,
+puis composer sur l'offre fraîche. Si le déclenchement échoue ou si `summary.last_error` : le dire dans `notes` et composer quand même
+si l'offre est exploitable.
 
 ## 1. Périmètre
 Soirée = matchs dont `fin_ts` > maintenant + `marge_scan_min` (45 min) et coup d'envoi avant 05h00 Paris le lendemain.
@@ -28,16 +31,21 @@ Pour chaque joueur envisagé (Buteur, Buteur 2 fois ou plus, Joueur décisif) :
 Noter chaque joueur écarté dans `exclusions` (match, joueur, raison, source).
 
 ## 3. Choisir les sélections
-- Jambes « masse » : favoris 1,15–1,70, double chance 1,15–1,65, buts équipe +1,5, +/−2,5 ≤ 1,75, les 2 marquent ≤ 1,80.
-- Jambes « piquantes » (1–2 par ticket) : nul 3–4,3, outsider 2,4–4,6, doublé ≤ 4,6 d'un joueur vérifié titulaire et premier buteur attendu.
+Règle de risque de Jtab (25/11/2026) : **pas de match nul, pas de doublé joueur, aucune jambe au-dessus de 2,50**
+(`config.json > tickets > cote_max_jambe` et `marches_interdits`). Le vérificateur refuse le ticket (code 1) sinon.
+- Jambes de base : favoris 1,15–1,80, double chance 1,15–1,65, buts équipe +1,5, +/−2,5 ≤ 1,75, les 2 marquent ≤ 1,80.
+- Jambes plus payées (1–2 par ticket, toujours ≤ 2,50) : favori court ou équipe en forme 1,80–2,50, buts équipe +2,5 d'un gros favori.
+  Jamais de nul, jamais de doublé, jamais d'outsider au-delà de 2,50, même pour atteindre la fourchette de gains.
+- La fourchette de gains passe APRÈS la règle de risque : si elle est hors d'atteinte sans jambe fragile, livrer un ticket
+  sous la fourchette et le dire dans `notes` (l'avertissement du vérificateur est alors normal).
 - Privilégier les sélections à `value_pct` ≥ 0 (surtout `picks`) ; éviter `value_pct` < −8 (FDJ nettement surcotée). Un marché sans
   référence (joueurs, buts équipe) se juge sur la cote, l'avis et le contexte, pas sur une intuition de score.
-- Cohérence interne : pas de « Moins 2,5 » avec un doublé ou « les 2 marquent » du même match (impossible de toute façon : une sélection
-  par match et par ticket) ; entre tickets, jamais deux choix incompatibles sur un même match (1 contre N, Plus contre Moins…), ≤ 1 match
-  commun entre deux tickets, un joueur dans ≤ 2 tickets.
+- Cohérence interne : une sélection par match et par ticket ; entre tickets, jamais deux choix incompatibles sur un même match
+  (1 contre 2, Plus contre Moins…), ≤ 1 match commun entre deux tickets, un joueur dans ≤ 2 tickets.
 - Mix par défaut pour `nb = 5` : 1 « discipliné » (2–3 sélections, cote 3–8, marchés 1N2/double chance/+−2,5/les 2 marquent),
-  2 « mélange » (4–8 sélections, ≥ 4 types), 1 « safe » (6–10 sélections ≤ 1,80), 1 « risqué » (3–6 sélections, outsiders/nuls/doublé).
-  Cote cible des tickets non disciplinés : `gain_min / mise` à `gain_max / mise`. ≥ 4 sélections à cote ≥ 1,20 déclenchent le Combi Boosté.
+  2 « mélange » (4–8 sélections, ≥ 3 types), 2 « safe » (6–10 sélections ≤ 1,80). Le style « risqué » n'est plus composé.
+  Cote cible des tickets non disciplinés : `gain_min / mise` à `gain_max / mise` quand c'est atteignable sans enfreindre la règle de risque.
+  ≥ 4 sélections à cote ≥ 1,20 déclenchent le Combi Boosté.
 - Un nom et une phrase (`story`) par ticket ; `why` d'une ligne par jambe (fait vérifiable : forme, absents, valeur), pas de roman.
 
 ## 4. Écrire et vérifier

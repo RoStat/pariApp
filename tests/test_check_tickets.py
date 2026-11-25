@@ -11,6 +11,9 @@ NOW = 1793959200.0  # 2026-11-06T10:00:00Z
 DISPO = {"matches": {"1": {"match": "Toulouse-Strasbourg", "home": {"team": "Toulouse", "absents": [{"player": "Casper Tengstedt", "type": "Missing Fixture", "reason": "Knee Injury"}], "xi": None, "bench": None},
                            "away": {"team": "Strasbourg", "absents": [{"player": "Emanuel Emegha", "type": "Questionable", "reason": "Thigh"}], "xi": None, "bench": None}}}}
 VALUE = {"rows": [{"market_id": 101, "pos": 3, "value_pct": 4.2}]}
+# Les tests de résolution utilisent des cotes hautes : plafond et types interdits neutralisés ici, testés à part (TestPlafondRisque).
+RISK = {"cote_max_jambe": ct.T["cote_max_jambe"], "marches_interdits": list(ct.T.get("marches_interdits", []))}
+ct.T["cote_max_jambe"], ct.T["marches_interdits"] = 99, []
 
 
 def run(tickets, dispo=DISPO, now=NOW):
@@ -86,6 +89,36 @@ class TestRegles(unittest.TestCase):
         self.assertFalse(ct.same_player("Casper Tengstedt", "J. Tengstedt"))
         self.assertTrue(ct.same_player("Ortega, Jacobo", "Jacobo Ortega"))
         self.assertFalse(ct.same_player("Emanuel Emegha", "Casper Tengstedt"))
+
+
+class TestPlafondRisque(unittest.TestCase):
+    """Règles de risque de config.json > tickets : pas de match nul, pas de doublé joueur, cote d'une jambe plafonnée."""
+    def setUp(self):
+        self.saved = (ct.T["cote_max_jambe"], ct.T["marches_interdits"])
+        ct.T["cote_max_jambe"], ct.T["marches_interdits"] = 2.5, ["nul", "double"]
+
+    def tearDown(self):
+        ct.T["cote_max_jambe"], ct.T["marches_interdits"] = self.saved
+
+    def test_config_reelle(self):
+        self.assertLessEqual(RISK["cote_max_jambe"], 2.5)
+        self.assertIn("nul", RISK["marches_interdits"]); self.assertIn("double", RISK["marches_interdits"])
+
+    def test_nul_refuse(self):
+        c, _ = run([{"name": "N", "legs": [{"event_id": 1, "mk": "1N2", "pick": "N"}, {"event_id": 2, "mk": "1N2", "pick": "1"}]}])
+        self.assertTrue(any("interdit" in e and "nul" in e for e in c.errors), c.errors)
+
+    def test_double_refuse(self):
+        c, _ = run([{"name": "D", "legs": [{"event_id": 1, "mk": "double", "pick": "Amaaouch"}, {"event_id": 2, "mk": "1N2", "pick": "1"}]}])
+        self.assertTrue(any("interdit" in e and "double" in e for e in c.errors), c.errors)
+
+    def test_cote_au_dessus_du_plafond_refusee(self):
+        c, _ = run([{"name": "C", "legs": [{"event_id": 3, "mk": "1N2", "pick": "1"}, {"event_id": 2, "mk": "1N2", "pick": "1"}]}])
+        self.assertTrue(any("cote maximale" in e for e in c.errors), c.errors)
+
+    def test_ticket_sobre_accepte(self):
+        c, _ = run([{"name": "S", "legs": [{"event_id": 1, "mk": "1N2", "pick": "1"}, {"event_id": 2, "mk": "1N2", "pick": "1"}]}])
+        self.assertEqual(c.errors, [])
 
 
 if __name__ == "__main__":

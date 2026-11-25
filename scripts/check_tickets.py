@@ -11,7 +11,7 @@ Erreurs (code 1, le fichier n'est pas réécrit sauf --write-anyway) :
   - deux sélections sur un même match dans un ticket ; plus de max_legs ; moins de 2 sélections
   - couverture entre tickets (sélections incompatibles sur un même match : 1 contre N, Plus contre Moins, Oui contre Non…)
   - joueur absent (blessé / suspendu) ou hors compo officielle d'après data/dispo.json
-Avertissements (écrits dans le fichier) : cote totale hors fourchette, jambe > cote_max_jambe, matchs communs > max_matchs_communs,
+Avertissements (écrits dans le fichier) : cote totale hors fourchette, matchs communs > max_matchs_communs,
 joueur dans > max_tickets_par_joueur tickets, joueur « incertain » (Questionable), match sans donnée de disponibilité.
 
 Usage : python3 scripts/check_tickets.py data/tickets.json [--now <ts>] [--write-anyway]
@@ -195,7 +195,9 @@ class Checker:
                 if l["fin_ts"] < self.now + T["marge_scan_min"] * 60:
                     self.errors.append(f"[{name}] : {l['match']} ferme à {iso(l['fin_ts'])}, moins de {T['marge_scan_min']} min de marge")
                 if l["cote"] > T["cote_max_jambe"]:
-                    self.warnings.append(f"[{name}] : {l['label']} à {l['cote']} > {T['cote_max_jambe']}")
+                    self.errors.append(f"[{name}] : {l['label']} à {l['cote']} > {T['cote_max_jambe']} (cote maximale d'une jambe)")
+                if l["type"] in T.get("marches_interdits", []):
+                    self.errors.append(f"[{name}] : {l['label']} — type « {l['type']} » interdit (config.json > tickets > marches_interdits)")
                 for u in all_legs:
                     if opposed(u["leg"], l):
                         self.errors.append(f"[{name}] : « {l['label']} » couvre « {u['leg']['label']} » du ticket {u['ticket']} ({l['match']})")

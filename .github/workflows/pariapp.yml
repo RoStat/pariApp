@@ -1,13 +1,13 @@
 # Relais PariApp — run « journée » : trois jobs séquentiels (≤ 6 h chacun, limite GitHub) qui bouclent (scripts/boucle.py) :
 # offre FDJ toutes les 30 min, toutes les 10 min quand un match suivi approche (relevés Pinnacle pre/close garantis),
 # disponibilité des joueurs (API-Football), CLV, Issue alias, commit à chaque passage.
-# GitHub exécute les crons de façon aléatoire (le 05/11 : 4 runs sur ~55 attendus). Ici un cron de secours part chaque heure :
+# GitHub exécute les crons de façon aléatoire (le 05/11 : 4 runs sur ~55 attendus). Ici un cron de secours part toutes les 20 minutes :
 # si le run du jour tourne déjà, le nouveau reste en attente (concurrency) puis sort aussitôt (tranches terminées) ;
 # s'il a été perdu ou a planté, le suivant reprend la journée là où elle en est. Tout est en UTC.
 name: pariapp-relais
 on:
   schedule:
-    - cron: "13 7-21 * * *"
+    - cron: "7,27,47 5-21 * * *"   # GitHub n'honore qu'une petite partie des crons (≈ 2 sur 15 par jour en novembre 2026) : on multiplie les chances
   workflow_dispatch: {}      # « Run workflow » : lancer la journée à la main si GitHub a perdu le cron (sort aussitôt si tout est fini)
 permissions:
   contents: write

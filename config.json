@@ -67,7 +67,7 @@
   "tickets": {
     "_doc": "Paramètres par défaut des tickets composés par l'agent Claude (docs/COMPOSER.md) et vérifiés par scripts/check_tickets.py. marge_scan_min = temps pour aller scanner en point de vente.",
     "nb": 5, "mise": 3.0, "gain_min": 200, "gain_max": 2000, "max_legs": 12, "marge_scan_min": 45,
-    "max_matchs_communs": 1, "max_tickets_par_joueur": 2, "cote_max_jambe": 4.6,
+    "max_matchs_communs": 1, "max_tickets_par_joueur": 2, "cote_max_jambe": 2.5, "marches_interdits": ["nul", "double"],
     "trj": {"1N2": 0.843, "DC": 0.901, "OU25": 0.832, "BTTS": 0.824, "team_total": 0.83, "buteur": 0.75, "double": 0.70, "decisif": 0.75, "double_match": 0.80}
   }
 }
