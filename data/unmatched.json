@@ -1,4 +1,11 @@
 {
- "updated_at": "2026-11-26T16:15:07Z",
- "rows": []
+ "updated_at": "2026-11-26T16:25:08Z",
+ "rows": [
+  {
+   "match": "Olympiakos-Milan AC",
+   "start": "2026-11-26T17:45:00Z",
+   "best_api": "Olympiakos Piraeus - AC Milan",
+   "score": 0.714
+  }
+ ]
 }
