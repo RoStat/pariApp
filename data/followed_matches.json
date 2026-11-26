@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1303899,
-  "match": "Kairat Almaty-Mjällby",
-  "home": "Kairat Almaty",
-  "away": "Mjällby",
-  "sport_key": "soccer_uefa_europa_conference_league",
-  "comp": "Europa Conf.",
-  "start_ts": 1795707000,
-  "fin_ts": 1795706700
- },
- {
   "event_id": 1303943,
   "match": "Ajax-FC Thun",
   "home": "Ajax",
