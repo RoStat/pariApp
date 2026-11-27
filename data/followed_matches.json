@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1322937,
-  "match": "Brest-Paris FC",
-  "home": "Brest",
-  "away": "Paris FC",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1795808700,
-  "fin_ts": 1795808400
- },
- {
   "event_id": 1322942,
   "match": "Angers-Lens",
   "home": "Angers",
