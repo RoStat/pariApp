@@ -1,15 +1,5 @@
 [
  {
-  "event_id": 1322942,
-  "match": "Angers-Lens",
-  "home": "Angers",
-  "away": "Lens",
-  "sport_key": "soccer_france_ligue_one",
-  "comp": "L1 McDonald's",
-  "start_ts": 1795882500,
-  "fin_ts": 1795882200
- },
- {
   "event_id": 1322939,
   "match": "Le Havre-Strasbourg",
   "home": "Le Havre",
